@@ -1,0 +1,282 @@
+{
+  "assistant": {
+    "id": "assistant",
+    "name": "Assistant",
+    "persona_name": null,
+    "description": "AI assistant with access to specialized tools and agents",
+    "division": "general",
+    "role": "supervisor",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.7,
+    "maxTokens": 4096,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [
+      "web-search"
+    ],
+    "category": "personal_assistant",
+    "visibility": "internal"
+  },
+  "chat-llm": {
+    "id": "chat-llm",
+    "name": "Chat with LLM",
+    "persona_name": null,
+    "description": "Direct conversation with AI model - choose your own model",
+    "division": "general",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.7,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "personal_assistant",
+    "visibility": "internal"
+  },
+  "competitive-analyst": {
+    "id": "competitive-analyst",
+    "name": "competitive-analyst",
+    "label": "Competitive Analyst",
+    "persona_name": "Vera",
+    "description": "Researches and analyzes competitor products, pricing, positioning, and go-to-market strategies",
+    "division": "research",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.4,
+    "maxTokens": 3072,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "sales",
+    "visibility": "system"
+  },
+  "content-producer": {
+    "id": "content-producer",
+    "name": "content-producer",
+    "label": "Content Producer",
+    "persona_name": null,
+    "description": "Creates, edits, and optimizes written content for marketing and communications",
+    "division": "marketing",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.7,
+    "maxTokens": 4096,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "other",
+    "visibility": "system"
+  },
+  "customer-success-op": {
+    "id": "customer-success-op",
+    "name": "customer-success-op",
+    "label": "Customer Success Operations",
+    "persona_name": null,
+    "description": "Manages customer relationships, health scoring, and success planning",
+    "division": "support",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.4,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "customer_support",
+    "visibility": "system"
+  },
+  "data-report-analyst": {
+    "id": "data-report-analyst",
+    "name": "data-report-analyst",
+    "label": "Data Report Analyst",
+    "persona_name": null,
+    "description": "Analyzes datasets, identifies trends, and prepares executive-level data reports",
+    "division": "general",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.3,
+    "maxTokens": 4096,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "other",
+    "visibility": "system"
+  },
+  "executive-assistant": {
+    "id": "executive-assistant",
+    "name": "executive-assistant",
+    "label": "Executive Assistant",
+    "persona_name": null,
+    "description": "Supports executive productivity through communication drafting, research, and organization",
+    "division": "general",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.5,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "personal_assistant",
+    "visibility": "system"
+  },
+  "financial-reconciler": {
+    "id": "financial-reconciler",
+    "name": "financial-reconciler",
+    "label": "Financial Reconciler",
+    "persona_name": "Atlas",
+    "description": "Assists with transaction matching, discrepancy identification, and reconciliation reporting",
+    "division": "finance",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.2,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "other",
+    "visibility": "system"
+  },
+  "meeting-notetaker": {
+    "id": "meeting-notetaker",
+    "name": "meeting-notetaker",
+    "label": "Meeting Notetaker",
+    "persona_name": null,
+    "description": "Captures meeting notes, decisions, and action items for follow-up and alignment",
+    "division": "general",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.3,
+    "maxTokens": 3072,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "personal_assistant",
+    "visibility": "system"
+  },
+  "recruiter": {
+    "id": "recruiter",
+    "name": "recruiter",
+    "label": "Recruiter",
+    "persona_name": "Theo",
+    "description": "Assists talent acquisition teams with sourcing, screening, and candidate communication",
+    "division": "people",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.5,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "other",
+    "visibility": "system"
+  },
+  "sales-researcher": {
+    "id": "sales-researcher",
+    "name": "sales-researcher",
+    "label": "Sales Researcher",
+    "persona_name": "Mira",
+    "description": "Researches prospects, accounts, and market data to support sales teams",
+    "division": "sales",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.4,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "sales",
+    "visibility": "system"
+  },
+  "social-media-manager": {
+    "id": "social-media-manager",
+    "name": "social-media-manager",
+    "label": "Social Media Manager",
+    "persona_name": null,
+    "description": "Creates engaging social content, plans posting calendars, and manages community interactions",
+    "division": "marketing",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.7,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "other",
+    "visibility": "system"
+  },
+  "supply-chain-coordinator": {
+    "id": "supply-chain-coordinator",
+    "name": "supply-chain-coordinator",
+    "label": "Supply Chain Coordinator",
+    "persona_name": "Ozzy",
+    "description": "Manages procurement workflows, vendor performance, and logistics coordination",
+    "division": "operations",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.3,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "other",
+    "visibility": "system"
+  },
+  "support-triage": {
+    "id": "support-triage",
+    "name": "support-triage",
+    "label": "Support Triage",
+    "persona_name": "Yuki",
+    "description": "Assesses, categorizes, and routes incoming support tickets to reduce time-to-resolution",
+    "division": "support",
+    "role": "specialist",
+    "tier": "free",
+    "backend_type": "chat",
+    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
+    "temperature": 0.3,
+    "maxTokens": 2048,
+    "skills": [
+      "interview"
+    ],
+    "callable_agent_ids": [],
+    "category": "customer_support",
+    "visibility": "system"
+  }
+}
