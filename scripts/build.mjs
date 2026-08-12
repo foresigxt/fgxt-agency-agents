@@ -15,7 +15,7 @@ writeFileSync(join(distDir, "agents.json"), JSON.stringify(agents, null, 2) + "\
 writeFileSync(join(distDir, "skills.json"), JSON.stringify(skills, null, 2) + "\n");
 
 // dist/index.js re-exports the JSON as named exports so consumers can
-// `import { agents, skills } from "@neutrino-io/agency-agents"`. JSON is loaded
+// `import { agents, skills } from "@foresigxt/agency-agents"`. JSON is loaded
 // via createRequire, which works in every Node ESM runtime without flags.
 const indexJs = `import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);

@@ -39,12 +39,12 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-          # Internal registry for the @neutrino-io scope.
+          # Registry for the @foresigxt scope (adjust --access public if this is a public npm org).
           registry-url: https://registry.npmjs.org
-          scope: "@neutrino-io"
+          scope: "@foresigxt"
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      # Requires the NEUTRINO_REGISTRY_TOKEN repository secret (scoped publish token).
+      # Requires the NPM_TOKEN repository secret (scoped publish token).
       - run: pnpm publish --access restricted --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NEUTRINO_REGISTRY_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,7 +1,7 @@
 {
-  "name": "@neutrino-io/agency-agents",
+  "name": "@foresigxt/agency-agents",
   "version": "0.0.0",
-  "description": "Markdown-authored agency agents + SKILL.md skills. Builds the @neutrino-io/agency-agents artifact contract (dist/agents.json + dist/skills.json) consumed by fgxt-app-web.",
+  "description": "Markdown-authored agency agents + SKILL.md skills. Builds the @foresigxt/agency-agents artifact contract (dist/agents.json + dist/skills.json) consumed by fgxt-app-web.",
   "type": "module",
   "main": "dist/index.js",
   "exports": {

@@ -1,4 +1,4 @@
-# @neutrino-io/agency-agents
+# @foresigxt/agency-agents
 
 Markdown-authored **agents** and **skills** for the Foresigxt agency, plus a
 validating build that publishes the artifact contract consumed by `fgxt-app-web`.
@@ -65,20 +65,20 @@ and every `system_prompt`.
 ## Consuming the package
 
 ```js
-import { agents, skills } from "@neutrino-io/agency-agents";
+import { agents, skills } from "@foresigxt/agency-agents";
 // or the raw artifacts:
-import agents from "@neutrino-io/agency-agents/agents.json" with { type: "json" };
+import agents from "@foresigxt/agency-agents/agents.json" with { type: "json" };
 ```
 
-Add it as a dependency (internal `@neutrino-io` registry):
+Add it as a dependency (internal `@foresigxt` registry):
 
 ```bash
-pnpm add @neutrino-io/agency-agents@^0.1.0
+pnpm add @foresigxt/agency-agents@^0.1.0
 ```
 
 ## Publishing
 
 Publishing is automated on `v*` tags (`.github/workflows/ci.yml` `publish` job):
 it runs `pnpm build` then `pnpm publish --access restricted` using the
-`NEUTRINO_REGISTRY_TOKEN` repository secret (a scoped publish token for the
-`@neutrino-io` registry). To cut a release: `git tag v0.1.0 && git push --tags`.
+`NPM_TOKEN` repository secret (a scoped publish token for the
+`@foresigxt` registry). To cut a release: `git tag v0.1.0 && git push --tags`.
