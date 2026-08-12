@@ -11,8 +11,7 @@ backend_type: chat
 model: cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest
 temperature: 0.4
 maxTokens: 3072
-skills:
-  - interview
+skills: []
 callable_agent_ids: []
 category: sales
 visibility: system

@@ -58,7 +58,7 @@ describe("parity: build output matches the Plan B fixture oracle", () => {
     },
   );
 
-  it("skills round-trip exactly (interview)", () => {
+  it("skills round-trip exactly (empty in v0.3.0)", () => {
     expect(built.skills).toEqual(fixtureSkills);
   });
 });

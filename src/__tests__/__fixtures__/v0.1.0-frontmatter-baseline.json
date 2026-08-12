@@ -11,9 +11,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
     "maxTokens": 4096,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [
       "web-search"
     ],
@@ -32,9 +30,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "personal_assistant",
     "visibility": "internal"
@@ -52,9 +48,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.4,
     "maxTokens": 3072,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "sales",
     "visibility": "system"
@@ -72,9 +66,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
     "maxTokens": 4096,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -92,9 +84,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.4,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "customer_support",
     "visibility": "system"
@@ -112,9 +102,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
     "maxTokens": 4096,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -132,9 +120,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.5,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "personal_assistant",
     "visibility": "system"
@@ -152,9 +138,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.2,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -172,9 +156,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
     "maxTokens": 3072,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "personal_assistant",
     "visibility": "system"
@@ -192,9 +174,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.5,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -212,9 +192,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.4,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "sales",
     "visibility": "system"
@@ -232,9 +210,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -252,9 +228,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -272,9 +246,7 @@
     "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
     "maxTokens": 2048,
-    "skills": [
-      "interview"
-    ],
+    "skills": [],
     "callable_agent_ids": [],
     "category": "customer_support",
     "visibility": "system"

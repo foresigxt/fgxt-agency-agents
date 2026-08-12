@@ -17,8 +17,8 @@ function skillDirs(): string[] {
 }
 
 describe("Claude-Code compatibility", () => {
-  it("has at least one authored skill", () => {
-    expect(skillDirs().length).toBeGreaterThan(0);
+  it("has no authored skills (agency skills tier intentionally emptied in v0.3.0; skills relocated to the web-app core tier)", () => {
+    expect(skillDirs().length).toBe(0);
   });
 
   it.each(skillDirs())("skill folder %s has a Claude-loadable SKILL.md", (folder) => {
