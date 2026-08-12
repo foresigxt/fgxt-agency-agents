@@ -70,15 +70,27 @@ import { agents, skills } from "@foresigxt/agency-agents";
 import agents from "@foresigxt/agency-agents/agents.json" with { type: "json" };
 ```
 
-Add it as a dependency (internal `@foresigxt` registry):
+Distributed **directly from GitHub** (no npm registry). The built `dist/` is
+committed and `package.json` `exports` resolve to it, so consumers install the
+repo at a version tag and get the artifacts verbatim — no build on install, and
+no auth for a public repo:
 
 ```bash
-pnpm add @foresigxt/agency-agents@^0.1.0
+pnpm add github:foresigxt/fgxt-agency-agents#v0.1.0
 ```
 
-## Publishing
+Pin to a tag (recommended) or a commit SHA for reproducibility. `gray-matter`
+and `zod` are `devDependencies` (build-only) — consumers pull no runtime deps.
 
-Publishing is automated on `v*` tags (`.github/workflows/ci.yml` `publish` job):
-it runs `pnpm build` then `pnpm publish --access restricted` using the
-`NPM_TOKEN` repository secret (a scoped publish token for the
-`@foresigxt` registry). To cut a release: `git tag v0.1.0 && git push --tags`.
+## Releasing
+
+There is no npm publish step — the git tag *is* the release. To cut one: bump
+`version` in `package.json`, ensure `pnpm build` leaves `dist/` clean (CI's
+`git diff --exit-code -- dist` gate enforces this), then:
+
+```bash
+git tag v0.1.0 && git push origin main --tags
+```
+
+Consumers then bump their dependency ref (e.g. `#v0.1.1`). CI (`.github/workflows/ci.yml`)
+runs build + test + lint + the `dist` freshness gate on every push, PR, and tag.

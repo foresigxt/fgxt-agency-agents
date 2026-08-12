@@ -23,28 +23,7 @@ jobs:
       - run: pnpm test
       - run: pnpm lint
       # dist/ is committed; fail if the build produced anything different.
+      # This is what makes git-install distribution safe: consumers install the
+      # repo at a tag and get the committed dist/ verbatim (no build on install).
       - name: Ensure committed dist/ is up to date
         run: git diff --exit-code -- dist
-
-  publish:
-    needs: validate
-    if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-          # Registry for the @foresigxt scope (adjust --access public if this is a public npm org).
-          registry-url: https://registry.npmjs.org
-          scope: "@foresigxt"
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      # Requires the NPM_TOKEN repository secret (scoped publish token).
-      - run: pnpm publish --access restricted --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
