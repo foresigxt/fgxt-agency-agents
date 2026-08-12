@@ -1,0 +1,6 @@
+node_modules/
+*.log
+.DS_Store
+coverage/
+
+# dist/ is intentionally committed — it is the published artifact.

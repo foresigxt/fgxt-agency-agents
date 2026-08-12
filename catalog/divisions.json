@@ -1,0 +1,34 @@
+{
+  "general": {
+    "label": "General",
+    "description": "Cross-functional assistants and productivity roles not tied to a single department."
+  },
+  "sales": {
+    "label": "Sales",
+    "description": "Prospect research, account intelligence, and revenue-team support."
+  },
+  "marketing": {
+    "label": "Marketing",
+    "description": "Content production and social/community engagement."
+  },
+  "research": {
+    "label": "Research",
+    "description": "Competitive and market intelligence."
+  },
+  "finance": {
+    "label": "Finance",
+    "description": "Reconciliation, close support, and financial reporting."
+  },
+  "people": {
+    "label": "People",
+    "description": "Talent acquisition and HR operations."
+  },
+  "operations": {
+    "label": "Operations",
+    "description": "Procurement, logistics, and supply-chain coordination."
+  },
+  "support": {
+    "label": "Support",
+    "description": "Customer success operations and support triage."
+  }
+}

@@ -1,0 +1,3 @@
+# Reserved for the deferred upstream vendoring (Plan A Task 6).
+# v0 ships no upstream agents. `scripts/vendor-upstream.mjs` will populate
+# agents/upstream/<division>/<id>.md as dormant (visibility:"internal") roles.
