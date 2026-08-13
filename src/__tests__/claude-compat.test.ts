@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
@@ -13,6 +13,9 @@ const here = dirname(fileURLToPath(import.meta.url));
 const skillsDir = join(here, "..", "..", "skills");
 
 function skillDirs(): string[] {
+  // git does not track empty directories, so a fresh CI checkout has no
+  // `skills/` dir once the tier is emptied (v0.3.0). Absent dir == 0 skills.
+  if (!existsSync(skillsDir)) return [];
   return readdirSync(skillsDir).filter((entry) => statSync(join(skillsDir, entry)).isDirectory());
 }
 
