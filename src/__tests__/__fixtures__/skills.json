@@ -1,1 +1,65 @@
-[]
+[
+  {
+    "name": "data-reconciliation",
+    "description": "Use when two sets of records should agree — reconciles them and classifies every discrepancy.",
+    "tier": "free",
+    "tools": [
+      "table",
+      "compare"
+    ],
+    "instructions": "Two lists that should match are a reconciliation task, not a summarization task.\n\n**Establish the key both sides join on before comparing anything.** Decide what\nidentifies \"the same record\" in each set — an ID, a name plus date, whatever is\nstable — before lining rows up. A comparison built on the wrong key manufactures\ndiscrepancies that are not real.\n\n**Separate missing-on-one-side from present-but-different.** A record absent from\none set is a different problem than a record present in both with conflicting\nvalues. Report them as distinct categories, not one undifferentiated pile of\n\"mismatches.\"\n\n**Classify each discrepancy by cause, not just by symptom.** Timing lag, a data\nentry error, a legitimate business exception, and a genuine defect all look like\n\"the numbers don't match\" until you ask why. Say which one you believe you are\nlooking at and what supports that.\n\n**Never silently drop an unmatched row.** A record that could not be joined on\neither side still belongs in the output, flagged as unmatched — omitting it is\nhow a reconciliation quietly becomes wrong.",
+    "directive": "When reconciling records, classify each discrepancy by cause rather than only listing it."
+  },
+  {
+    "name": "draft-and-revise",
+    "description": "Use when producing written output — drafts, then revises against explicit criteria rather than shipping the first attempt.",
+    "tier": "free",
+    "tools": [
+      "draft"
+    ],
+    "instructions": "The first pass is a draft, not a deliverable.\n\n**Name the audience and purpose before writing a word.** Who reads this and what\nthey need to do after reading it shapes every choice that follows — length, tone,\nwhat to explain versus assume. Decide it up front rather than discovering it in\nrevision.\n\n**Draft the whole thing before polishing any of it.** Use the `draft` tool to\nproduce a complete first pass — every section present, even roughly — before\nreturning to fix a sentence. A polished opening on an unfinished piece is not\nprogress.\n\n**Revise against the criteria you named, not against a vague sense of quality.**\nCheck the draft for the audience and purpose you set: does it fit them, is\nanything there for someone else instead. Cut and rewrite against that standard,\nnot general taste.\n\n**Stop when the named criteria are met.** More passes past that point is not\nrigor, it is drift — the piece starts serving whatever caught your eye instead of\nthe reader it was written for.",
+    "directive": "For written deliverables, draft first, then revise against the audience and purpose you named."
+  },
+  {
+    "name": "research-sweep",
+    "description": "Use when the answer depends on current external information — runs a structured search pass and reports findings with sources.",
+    "tier": "pro",
+    "tools": [
+      "web-search",
+      "table"
+    ],
+    "instructions": "Answer from evidence you gathered in this turn, not from recall.\n\n**Scope before searching.** State in one line what would answer the question. If the\nrequest is broad, name the two or three sub-questions you will actually search.\n\n**Search in passes, not one shot.** Start with the plainest phrasing of the question.\nRead what comes back, then search again using the vocabulary the sources themselves\nuse. Two or three narrow passes beat one broad one.\n\n**Deduplicate by claim, not by URL.** Several pages repeating one press release are\none source. Say so rather than presenting them as corroboration.\n\n**Report findings, then confidence.** Lead with what you found. Use the `table` tool\nwhen findings have shared attributes worth lining up. Attribute every non-obvious\nclaim to the source it came from.\n\n**Say what you could not establish.** A named gap is worth more than a confident\nguess. If the sources disagree, present the disagreement rather than picking a winner.",
+    "directive": "When a question turns on facts you cannot verify from context, run a research sweep before answering and cite each source."
+  },
+  {
+    "name": "source-vetting",
+    "description": "Use when a claim matters enough to be wrong about — corroborates it against independent sources before asserting it.",
+    "tier": "pro",
+    "tools": [
+      "web-search"
+    ],
+    "instructions": "Treat a single source as a lead, not an answer, when the claim is one you would be\nheld to.\n\n**Independence means separate origin, not separate URLs.** A wire story, its\nsyndicated copies, and a summary of it are one source wearing three masks. Trace a\nclaim back to where it was first stated before counting a second mention as\ncorroboration.\n\n**Prefer the primary source over commentary about it.** A filing, a changelog, an\nofficial statement outranks an article describing it. Reach for the primary\ndocument when one exists instead of citing the article that paraphrased it.\n\n**Weigh recency against authority — neither wins automatically.** A newer source can\nbe wrong first and corrected later; an older authoritative source can be stale.\nState which one you are trusting and why when they conflict.\n\n**Report a claim that fails vetting as unverified, not as false.** Say what you\nchecked, what you found, and that independent confirmation was not available —\ndo not silently drop the claim or silently promote it to fact.",
+    "directive": "Before asserting a claim a decision depends on, corroborate it against an independent source."
+  },
+  {
+    "name": "structured-comparison",
+    "description": "Use when choosing between options — compares them on stated, consistent criteria instead of prose impressions.",
+    "tier": "free",
+    "tools": [
+      "compare",
+      "table"
+    ],
+    "instructions": "A comparison earns trust by its criteria, not by its verdict.\n\n**Name the criteria before looking at the options.** Decide what matters — cost,\nrisk, time, whatever the decision actually turns on — before you start scoring, so\nthe criteria are not quietly reverse-engineered from a preferred answer.\n\n**Apply every criterion to every option.** A criterion you check for one option and\nskip for another is not a comparison, it is an argument dressed as one. Use the\n`compare` or `table` tool so the omission would be visible.\n\n**Mark an unknown as unknown.** Leaving a cell blank or guessing to fill it both\nhide the same fact: you do not have that data point. Say so explicitly instead of\neither.\n\n**State the tradeoff, not just the winner.** The options lost something by not\nbeing chosen — name what. A comparison that ends in a single winner with no\nrunner-up cost has not shown its work.",
+    "directive": "When comparing options, fix the criteria first and apply them to every option equally."
+  },
+  {
+    "name": "workspace-filing",
+    "description": "Use when output should outlive the conversation — files it to the workspace with a consistent name and location.",
+    "tier": "free",
+    "tools": [
+      "save-to-workspace"
+    ],
+    "instructions": "Not everything produced in a turn is worth keeping — decide, then act on it.\n\n**File what someone would reasonably look for later.** A finished deliverable, a\nreference worth reusing, a result the conversation was actually for — save those.\nA scratch calculation or an intermediate step that only mattered to get here is\nnot worth filing.\n\n**Name it so it is findable without the conversation that produced it.** A\ndescriptive name that states what the file is stands on its own; a name that only\nmakes sense next to the chat it came from does not survive being found later.\n\n**Put it where things like it already live.** Match the workspace's existing\nlayout and naming rather than inventing a new location for one file — a\nreconciliation goes where reconciliations go, a draft where drafts go.\n\n**Confirm what was saved and where.** After calling `save-to-workspace`, state the\nname and location back to the user — a save the user cannot locate afterward has\nnot actually helped them.",
+    "directive": "When output is worth keeping, save it to the workspace with a descriptive name."
+  }
+]
