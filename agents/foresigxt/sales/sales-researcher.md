@@ -8,10 +8,8 @@ division: sales
 role: specialist
 tier: free
 backend_type: chat
-model: cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest
 temperature: 0.4
-maxTokens: 2048
-skills: []
+skills: [account-research, research-sweep, source-vetting]
 callable_agent_ids: []
 category: sales
 visibility: system

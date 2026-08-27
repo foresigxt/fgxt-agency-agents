@@ -8,10 +8,8 @@ division: general
 role: specialist
 tier: free
 backend_type: chat
-model: cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest
 temperature: 0.3
-maxTokens: 4096
-skills: []
+skills: [report-build, data-reconciliation, structured-comparison]
 callable_agent_ids: []
 category: other
 visibility: system

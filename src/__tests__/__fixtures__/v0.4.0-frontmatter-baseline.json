@@ -8,13 +8,12 @@
     "role": "supervisor",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
-    "maxTokens": 4096,
-    "skills": [],
-    "callable_agent_ids": [
-      "web-search"
+    "skills": [
+      "delegation-routing",
+      "research-sweep"
     ],
+    "callable_agent_ids": [],
     "category": "personal_assistant",
     "visibility": "internal"
   },
@@ -27,9 +26,7 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
-    "maxTokens": 2048,
     "skills": [],
     "callable_agent_ids": [],
     "category": "personal_assistant",
@@ -45,10 +42,13 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.4,
-    "maxTokens": 3072,
-    "skills": [],
+    "skills": [
+      "competitor-battlecard",
+      "research-sweep",
+      "source-vetting",
+      "structured-comparison"
+    ],
     "callable_agent_ids": [],
     "category": "sales",
     "visibility": "system"
@@ -63,10 +63,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
-    "maxTokens": 4096,
-    "skills": [],
+    "skills": [
+      "content-brief",
+      "research-sweep",
+      "draft-and-revise"
+    ],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -81,10 +83,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.4,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "account-health-review",
+      "structured-comparison",
+      "workspace-filing"
+    ],
     "callable_agent_ids": [],
     "category": "customer_support",
     "visibility": "system"
@@ -99,10 +103,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
-    "maxTokens": 4096,
-    "skills": [],
+    "skills": [
+      "report-build",
+      "data-reconciliation",
+      "structured-comparison"
+    ],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -117,10 +123,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.5,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "scheduling-brief",
+      "draft-and-revise",
+      "workspace-filing"
+    ],
     "callable_agent_ids": [],
     "category": "personal_assistant",
     "visibility": "system"
@@ -135,10 +143,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.2,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "ledger-reconciliation",
+      "data-reconciliation",
+      "workspace-filing"
+    ],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -153,10 +163,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
-    "maxTokens": 3072,
-    "skills": [],
+    "skills": [
+      "meeting-synthesis",
+      "draft-and-revise",
+      "workspace-filing"
+    ],
     "callable_agent_ids": [],
     "category": "personal_assistant",
     "visibility": "system"
@@ -171,10 +183,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.5,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "candidate-screening",
+      "structured-comparison",
+      "draft-and-revise"
+    ],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -189,10 +203,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.4,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "account-research",
+      "research-sweep",
+      "source-vetting"
+    ],
     "callable_agent_ids": [],
     "category": "sales",
     "visibility": "system"
@@ -207,10 +223,11 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.7,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "social-calendar",
+      "draft-and-revise"
+    ],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -225,10 +242,12 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "vendor-comparison",
+      "structured-comparison",
+      "data-reconciliation"
+    ],
     "callable_agent_ids": [],
     "category": "other",
     "visibility": "system"
@@ -243,10 +262,11 @@
     "role": "specialist",
     "tier": "free",
     "backend_type": "chat",
-    "model": "cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest",
     "temperature": 0.3,
-    "maxTokens": 2048,
-    "skills": [],
+    "skills": [
+      "ticket-triage",
+      "structured-comparison"
+    ],
     "callable_agent_ids": [],
     "category": "customer_support",
     "visibility": "system"

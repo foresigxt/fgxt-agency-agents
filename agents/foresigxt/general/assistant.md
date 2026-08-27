@@ -7,12 +7,9 @@ division: general
 role: supervisor
 tier: free
 backend_type: chat
-model: cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest
 temperature: 0.7
-maxTokens: 4096
-skills: []
-callable_agent_ids:
-  - web-search
+skills: [delegation-routing, research-sweep]
+callable_agent_ids: []
 category: personal_assistant
 visibility: internal
 conversation_starters:

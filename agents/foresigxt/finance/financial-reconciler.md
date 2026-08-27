@@ -8,10 +8,8 @@ division: finance
 role: specialist
 tier: free
 backend_type: chat
-model: cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest
 temperature: 0.2
-maxTokens: 2048
-skills: []
+skills: [ledger-reconciliation, data-reconciliation, workspace-filing]
 callable_agent_ids: []
 category: other
 visibility: system

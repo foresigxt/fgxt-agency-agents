@@ -7,9 +7,7 @@ division: general
 role: specialist
 tier: free
 backend_type: chat
-model: cloudflare-ai-gateway/google-ai-studio/gemini-flash-latest
 temperature: 0.7
-maxTokens: 2048
 skills: []
 callable_agent_ids: []
 category: personal_assistant
