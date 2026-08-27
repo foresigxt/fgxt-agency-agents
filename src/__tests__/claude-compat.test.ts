@@ -20,8 +20,11 @@ function skillDirs(): string[] {
 }
 
 describe("Claude-Code compatibility", () => {
-  it("has no authored skills (agency skills tier intentionally emptied in v0.3.0; skills relocated to the web-app core tier)", () => {
-    expect(skillDirs().length).toBe(0);
+  it("has the authored skill tier (repopulated in v0.4.0; the core tier still holds interview/table/draft/compare)", () => {
+    // v0.3.0 emptied this tier and relocated `interview` to the web-app core
+    // tier. v0.4.0 repopulates it with per-agent skills — the core tier is
+    // unchanged and still invisible to agent.skills.
+    expect(skillDirs().length).toBeGreaterThanOrEqual(6);
   });
 
   it.each(skillDirs())("skill folder %s has a Claude-loadable SKILL.md", (folder) => {
