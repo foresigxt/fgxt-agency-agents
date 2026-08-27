@@ -59,6 +59,17 @@ describe("agent frontmatter", () => {
       }),
     ).toThrow();
   });
+
+  it("accepts frontmatter with no model (pool-routed agent)", () => {
+    const fm = {
+      id: "test-agent", name: "test-agent", description: "d", division: "research",
+      role: "specialist", tier: "free", backend_type: "chat",
+      category: "sales", visibility: "system",
+    };
+    const parsed = agentFrontmatterSchema.safeParse(fm);
+    expect(parsed.success).toBe(true);
+    if (parsed.success) expect(parsed.data.model).toBeUndefined();
+  });
 });
 
 describe("skill frontmatter", () => {

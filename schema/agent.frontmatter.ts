@@ -24,7 +24,8 @@ export const agentFrontmatterSchema = z
     role: z.enum(["supervisor", "specialist", "tool"]).default("specialist"),
     tier: z.enum(["free", "pro"]).default("free"),
     backend_type: z.enum(["chat", "live", "avatar"]).default("chat"),
-    model: z.string().min(1),
+    /** Omitted means pool-routed: the agent's modelPolicy.class selects the pool. */
+    model: z.string().min(1).optional(),
     temperature: z.number().optional(),
     maxTokens: z.number().optional(),
     skills: z.array(z.string()).default([]),
