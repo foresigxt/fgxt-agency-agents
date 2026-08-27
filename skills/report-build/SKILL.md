@@ -3,7 +3,7 @@ name: report-build
 description: Use when a question needs a repeatable answer from data — builds a report that states its method alongside its numbers.
 tier: free
 tools: [table, compare]
-directive: "When a question needs a repeatable answer from data, build the report and state the method alongside the numbers."
+directive: "When a data question needs a report, confirm the dataset, question, and audience before analyzing anything."
 ---
 
 A number without its method is a claim someone else has to take on faith.

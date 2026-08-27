@@ -3,7 +3,7 @@ name: social-calendar
 description: Use when planning posts across a period — builds a calendar with per-slot intent rather than a list of ideas.
 tier: free
 tools: [draft, table]
-directive: "When planning posts across a period, build the calendar with per-slot intent instead of a list of ideas."
+directive: "When posts must be planned for a period, confirm platform, cadence, and voice before filling any slot."
 ---
 
 A calendar schedules intent, not a pile of post ideas waiting to be sorted later.

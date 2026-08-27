@@ -3,7 +3,7 @@ name: meeting-synthesis
 description: Use after a discussion — turns notes into decisions, owners, and open questions rather than a transcript summary.
 tier: free
 tools: [draft, table]
-directive: "After a discussion, synthesize decisions, owners, and open questions rather than replaying the transcript."
+directive: "When notes or a transcript need structuring into minutes, read all of it before summarizing any of it."
 ---
 
 A summary that restates the meeting has not synthesized anything.

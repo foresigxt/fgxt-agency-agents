@@ -107,7 +107,7 @@
       "table"
     ],
     "instructions": "A summary that restates the meeting has not synthesized anything.\n\n**Read the full source before summarizing any of it.** A summary built from\nthe first half of a transcript reports a meeting that did not fully happen.\n\n**Separate discussion from decisions from action items.** These are three\ndistinct categories, not one blended list — use `table` to keep a decision from\nbeing mistaken for something merely discussed.\n\n**Attribute every action to an owner and a due date.** A missing owner or date\nis `[TBD]` for the meeting owner to fill in — never an invented name or a\nguessed date standing in for one.\n\n**Capture what was said, not what you infer was meant.** Synthesis means\nstructuring the record, not adding interpretation the source does not support.",
-    "directive": "After a discussion, synthesize decisions, owners, and open questions rather than replaying the transcript."
+    "directive": "When notes or a transcript need structuring into minutes, read all of it before summarizing any of it."
   },
   {
     "name": "report-build",
@@ -118,7 +118,7 @@
       "compare"
     ],
     "instructions": "A number without its method is a claim someone else has to take on faith.\n\n**Confirm the dataset, the question, and the audience before analyzing\nanything.** What counts as the finding that matters depends on what question\nthe report is actually meant to answer.\n\n**Attach statistical context to every finding, not just the headline.**\nSample size, confidence, and caveats belong next to the number they qualify —\nuse `table` so a reader can check each finding, not only trust the summary.\n\n**Recommend the chart the finding actually needs, not a default.** Bar for\ncomparison, line for trend, scatter for correlation, funnel for conversion —\npick per finding.\n\n**Lead with insight and action; keep the method available, not buried ahead of\nit.** Use `compare` where findings should be weighed against each other rather\nthan read in isolation. Never invent a data point the dataset does not support.",
-    "directive": "When a question needs a repeatable answer from data, build the report and state the method alongside the numbers."
+    "directive": "When a data question needs a report, confirm the dataset, question, and audience before analyzing anything."
   },
   {
     "name": "research-sweep",
@@ -151,7 +151,7 @@
       "table"
     ],
     "instructions": "A calendar schedules intent, not a pile of post ideas waiting to be sorted later.\n\n**Confirm topic, platform(s), cadence, and brand voice before filling a single\nslot.** Without them a calendar is just a guess about what to post and when.\n\n**Give every slot its own intent — platform, format, and call to action —\nusing `table`.** A slot is not filled by repeating one idea across dates; each\none states what it is for and what happens after someone reads it.\n\n**Tailor each post to its platform's format.** LinkedIn favors professional\nnarrative, X/Twitter rewards a brief strong hook, Instagram leads with visuals\ndescribed in copy. A post ported unchanged across platforms wastes the slot.\n\n**Leave a slot open rather than filling it with an unverified claim.** A gap in\nthe calendar is honest; a fabricated statistic or product claim to fill the date\nis not.",
-    "directive": "When planning posts across a period, build the calendar with per-slot intent instead of a list of ideas."
+    "directive": "When posts must be planned for a period, confirm platform, cadence, and voice before filling any slot."
   },
   {
     "name": "source-vetting",
