@@ -21,7 +21,9 @@ const fixturesDir = join(here, "__fixtures__");
 const fixtureAgents = JSON.parse(
   readFileSync(join(fixturesDir, "agents.json"), "utf8"),
 ) as AgencyAgentArtifact[];
-const fixtureSkills = JSON.parse(readFileSync(join(fixturesDir, "skills.json"), "utf8"));
+/** Authored but not yet in `catalog/activation.json` (FGXT-389 activates it). */
+const AWAITING_ACTIVATION = new Set(["tender-bidding-manager"]);
+const fixtureSkills =JSON.parse(readFileSync(join(fixturesDir, "skills.json"), "utf8"));
 
 // Normalize through JSON so the comparison sees exactly the on-disk artifact
 // (drops `undefined` keys; preserves explicit `null` — e.g. persona_name).
@@ -54,8 +56,8 @@ describe("parity: build output matches the Plan B fixture oracle", () => {
         Object.prototype.hasOwnProperty.call(want, "label"),
       );
       expect(got?.persona_name).toStrictEqual(want?.persona_name);
-      // Inactive until activated (tender-bidding-manager: FGXT-389).
-      expect(got?.active).toBe(want?.active);
+      // Pinned explicitly: only roles awaiting activation may be inactive.
+      expect(got?.active).toBe(!AWAITING_ACTIVATION.has(id));
     },
   );
 
