@@ -270,5 +270,29 @@
     "callable_agent_ids": [],
     "category": "customer_support",
     "visibility": "system"
+  },
+  "tender-bidding-manager": {
+    "id": "tender-bidding-manager",
+    "name": "tender-bidding-manager",
+    "label": "Tender Bidding Manager",
+    "persona_name": "Vera",
+    "description": "Decomposes tender documents, assesses bid/no-bid, and shapes bid strategy for public and private tenders",
+    "division": "sales",
+    "role": "specialist",
+    "tier": "pro",
+    "backend_type": "chat",
+    "skills": [
+      "tender-decomposition",
+      "bid-no-bid-assessment",
+      "bid-strategy",
+      "workflow-authoring",
+      "report-build",
+      "structured-comparison",
+      "source-vetting",
+      "workspace-filing"
+    ],
+    "callable_agent_ids": [],
+    "category": "sales",
+    "visibility": "system"
   }
 }

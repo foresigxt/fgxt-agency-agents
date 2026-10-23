@@ -2,7 +2,8 @@ import { describe, it, expect } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseSkillFile } from "../parse.ts";
+import { parseAgentFile, parseSkillFile } from "../parse.ts";
+import { agentFrontmatterSchema } from "../../schema/agent.frontmatter.ts";
 import { skillFrontmatterSchema } from "../../schema/skill.frontmatter.ts";
 
 /**
@@ -54,5 +55,30 @@ describe("tender skills (FGXT-388)", () => {
 
   it("workflow-authoring declares no tools (workflow tools arrive in FGXT-368)", () => {
     expect(parseSkill("workflow-authoring").frontmatter.tools).toEqual([]);
+  });
+});
+
+const ROLE = "agents/foresigxt/sales/tender-bidding-manager.md";
+
+describe("tender-bidding-manager role (FGXT-388)", () => {
+  it("tender-bidding-manager parses, binds only existing skills, and has no callable agents", () => {
+    const { frontmatter } = parseAgentFile(ROLE, readFileSync(join(repoRoot, ROLE), "utf8"));
+    const a = agentFrontmatterSchema.parse(frontmatter);
+    expect(a.id).toBe("tender-bidding-manager");
+    expect(a.persona_name).toBe("Vera");
+    expect(a.division).toBe("sales");
+    expect(a.tier).toBe("pro");
+    expect(a.model).toBeUndefined();
+    expect(a.callable_agent_ids).toEqual([]);
+    for (const n of NEW) expect(a.skills).toContain(n);
+    for (const s of a.skills) expect(existsSync(join(repoRoot, `skills/${s}/SKILL.md`))).toBe(true);
+    expect(a.conversation_starters).toHaveLength(3);
+  });
+
+  it("is NOT activated yet (FGXT-389 owns activation)", () => {
+    const activation = JSON.parse(
+      readFileSync(join(repoRoot, "catalog/activation.json"), "utf8"),
+    ) as string[];
+    expect(activation).not.toContain("tender-bidding-manager");
   });
 });

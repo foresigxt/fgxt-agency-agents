@@ -36,7 +36,7 @@ describe("parity: build output matches the Plan B fixture oracle", () => {
     expect(() => agencyArtifactsSchema.parse(built)).not.toThrow();
   });
 
-  it("emits exactly the 14 fixture agent ids (order-insensitive)", () => {
+  it("emits exactly the fixture agent ids (order-insensitive)", () => {
     expect(built.agents.map((a) => a.id).sort()).toEqual(
       fixtureAgents.map((a) => a.id).sort(),
     );
@@ -54,7 +54,8 @@ describe("parity: build output matches the Plan B fixture oracle", () => {
         Object.prototype.hasOwnProperty.call(want, "label"),
       );
       expect(got?.persona_name).toStrictEqual(want?.persona_name);
-      expect(got?.active).toBe(true);
+      // Inactive until activated (tender-bidding-manager: FGXT-389).
+      expect(got?.active).toBe(want?.active);
     },
   );
 

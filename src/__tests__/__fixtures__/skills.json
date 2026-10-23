@@ -22,6 +22,27 @@
     "directive": "Before a first call or outreach to an account, assemble the research brief rather than opening with a name alone."
   },
   {
+    "name": "bid-no-bid-assessment",
+    "description": "Use when deciding whether to pursue a tender — scores it on weighted fit, capability, competition, margin, and risk, and states a recommendation.",
+    "tier": "pro",
+    "tools": [
+      "compare",
+      "table"
+    ],
+    "instructions": "Every bid costs real effort; a decision to pursue one should be able to show why.\n\n**Agree the weights before scoring anything.** Fit, capability, competition,\nmargin, and risk do not matter equally to every business or every tender. Set\nthe weights with the person first, so the scores are not tuned afterwards to\nreach a preferred answer.\n\n**Score each criterion against evidence, not impression, using `table`.** For\nevery criterion record the score, the evidence behind it, and where that evidence\ncame from — the tender decomposition, the person, or a stated assumption.\n**Fit** is how closely the scope matches what the business already does.\n**Capability** is whether it can meet every mandatory requirement and the\ndelivery timeline. **Competition** is who else is likely to bid and on what\nfooting. **Margin** is whether the work can be priced to win and still pay.\n**Risk** covers contract terms, penalties, payment terms, and delivery exposure.\n\n**Treat any unmet mandatory requirement as a gate, not a low score.** A\ncompliance gap that cannot be closed before submission means no-bid however well\nthe other criteria score. Say which gap, and what would close it.\n\n**Mark unknowns as unknown.** If competitor activity or cost data is not\navailable, record the cell as unknown and say how it affects confidence in the\nresult. Do not guess a value to complete the matrix.\n\n**State the recommendation, its confidence, and what would change it.** Use\n`compare` when the person is weighing this tender against other pursuits.\nRecommend bid, no-bid, or bid-with-conditions, and name the conditions. The\ndecision belongs to the person; the assessment is there to make it informed.",
+    "directive": "Before scoring whether to bid, agree the criterion weights with the person and record them."
+  },
+  {
+    "name": "bid-strategy",
+    "description": "Use once a tender is a go — sets win themes, differentiators, pricing posture, and risks, each mapped to the evaluation criteria.",
+    "tier": "pro",
+    "tools": [
+      "draft"
+    ],
+    "instructions": "A bid is scored against the buyer's criteria, not against how good we think we are.\n\n**Start from the evaluation criteria and their weights.** Rank them by weight\nand put the effort where the marks are. A strong theme aimed at a criterion\nworth five percent wins less than an adequate one aimed at forty.\n\n**Write win themes as buyer outcome plus proof.** Each theme names what the\nbuyer gets, which criterion it scores against, and the evidence that makes it\nbelievable — a reference project, a certification, a named method. A theme with\nno proof is a slogan; mark it as needing evidence instead of shipping it.\n\n**Claim only differentiators the person has confirmed.** A differentiator is\nsomething this bidder can show and likely competitors cannot. Never invent a\ncapability, client name, statistic, or certification to strengthen a theme; ask\nfor the evidence, or leave the theme out.\n\n**State the pricing posture and its reasoning, not a price.** Say whether the\nbid should lead on value, price, or a balance, and why, given the price\nweighting and what is known of the competition. Pricing numbers come from the\nperson; the strategy explains the stance they support.\n\n**List the bid's risks with an owner and a mitigation for each.** Compliance\ngaps, delivery dependencies, contract terms, and weak criteria all belong here.\nA risk without a mitigation is a decision for the person to make, so name it as\none.\n\n**Use `draft` to produce the strategy as a document the bid team can work\nfrom.** Lead with the win themes against their criteria, then differentiators,\npricing posture, and risks. Label every assumption so it can be confirmed\nbefore the response is written.",
+    "directive": "When shaping a bid's strategy, map every theme to a published evaluation criterion before drafting any of it."
+  },
+  {
     "name": "candidate-screening",
     "description": "Use when assessing candidates against a role — screens them on the role's stated requirements rather than general impressions.",
     "tier": "free",
@@ -175,6 +196,16 @@
     "directive": "When comparing options, fix the criteria first and apply them to every option equally."
   },
   {
+    "name": "tender-decomposition",
+    "description": "Use when a tender or RFP document arrives — breaks it into sections, requirements, a compliance matrix, deadlines, and evaluation criteria.",
+    "tier": "pro",
+    "tools": [
+      "table"
+    ],
+    "instructions": "A requirement missed in the tender is a bid disqualified before anyone reads it.\n\n**Read the whole document, annexes and addenda included, before extracting\nanything.** Mandatory requirements hide in appendices, forms, and clarification\nnotices as often as in the main specification. A decomposition built from the\nfirst chapter describes a tender that was never issued.\n\n**Quote each requirement and cite where it came from.** Record the clause or\npage reference next to the requirement's own wording. A paraphrase can drift\nfrom what the evaluator will check against; the source text cannot.\n\n**Separate mandatory from desirable, and say how you decided.** \"Shall\",\n\"must\", and pass/fail criteria are mandatory; \"should\" and scored criteria are\nnot. Where the wording is ambiguous, flag it as a clarification question for the\nbuyer instead of choosing a reading silently.\n\n**Build the compliance matrix as requirement → evidence → status, using\n`table`.** Every requirement gets a row. Evidence is the document, certificate,\nor past project that proves it; status is met, partial, gap, or unknown. Leave\nevidence empty and status `unknown` until the person confirms it — never\nassume the bidder holds a certification or reference project.\n\n**Pull every date into one deadline list.** Clarification cut-off, site visit,\nsubmission, validity period, and any stage gates go in date order with the clause\nthey came from. A missed clarification deadline is as final as a missed\nsubmission.\n\n**Record the evaluation criteria and their weights exactly as stated.** If the\ntender does not publish weights, say so rather than estimating them. Bid/no-bid\nand bid strategy both depend on these numbers being the buyer's, not ours.",
+    "directive": "When a tender document is shared, read every section and annex before listing a single requirement."
+  },
+  {
     "name": "ticket-triage",
     "description": "Use when incoming issues need ordering — triages by impact and urgency and states why each landed where it did.",
     "tier": "free",
@@ -195,6 +226,14 @@
     ],
     "instructions": "A vendor decision made on price alone is a decision that ignores half the evidence.\n\n**Confirm what is being procured and the constraints before comparing a single\nquote.** Spec, budget, and timeline decide what \"meets the bar\" means for this\npurchase — fix them first.\n\n**Score every vendor against the same criteria, using `compare` or `table`.**\nCost, lead time, terms, and risk applied to one vendor and skipped for another\nis not a comparison — it is a preference dressed up as one.\n\n**Mark any price, lead time, or commitment you were not given as missing.** Do\nnot fill a gap with an assumed figure — compare only what you actually have, and\nsay what you do not.\n\n**Surface lead-time and reliability risk explicitly.** A low price that hides a\nlong or unreliable lead time has not been fairly compared — name the risk\nalongside the number.",
     "directive": "When selecting or reviewing suppliers, compare them on cost, lead time, and risk together, not price alone."
+  },
+  {
+    "name": "workflow-authoring",
+    "description": "Use when someone wants a repeatable process set up — composes a workflow from a plain-language goal that the person can read and approve.",
+    "tier": "pro",
+    "tools": [],
+    "instructions": "A workflow the person cannot read is a workflow they cannot approve.\n\n**Restate the goal as inputs, steps, and outputs before composing.** Confirm\nwhat starts the process, what it reads, and what it should produce or change.\nAsk instead of guessing when any of the three is unclear.\n\n**Break the goal into single-purpose steps, and choose the shape each one\nneeds.** Use a plain sequence when each step depends on the one before.\nUse `foreach` when the same work repeats over a list, such as the sections of a\ndocument. Use `parallel` when independent steps can run together. Use\n`ask-human` when the process needs an answer or a decision only a person can\ngive.\n\n**Put an `ask-human` approval before every side effect.** Any step that sends,\nwrites, files, deletes, or changes something in a connected system waits for a\nperson's approval first. Reading and analysing need no gate; changing things\nalways does.\n\n**Use only your own agent and your own stage variants in agent steps.** A\nworkflow never references another agent. If part of the goal belongs to a\ndifferent agent, say so and leave it out of the workflow instead of handing it\nacross.\n\n**Show the person a readable step summary every time you draft or change a\nworkflow.** Number the steps, say what each one does in plain words, and mark\nevery side effect and every approval gate. The workflow is not ready until the\nperson has read that summary and agreed it does what they asked.\n\n**The workflow tools are not available yet.** Until they are, give the person\nthe step summary as the deliverable, and say plainly that the workflow cannot\nbe saved or run from this conversation.",
+    "directive": "When asked to set up a repeatable process, list its steps and side effects back to the person before composing anything."
   },
   {
     "name": "workspace-filing",
