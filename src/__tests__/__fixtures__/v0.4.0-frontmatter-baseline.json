@@ -10,6 +10,7 @@
     "backend_type": "chat",
     "temperature": 0.7,
     "skills": [
+      "agentic-operating",
       "delegation-routing",
       "research-sweep",
       "agent-architect"
@@ -106,6 +107,7 @@
     "backend_type": "chat",
     "temperature": 0.3,
     "skills": [
+      "agentic-operating",
       "report-build",
       "data-reconciliation",
       "structured-comparison"
@@ -126,6 +128,7 @@
     "backend_type": "chat",
     "temperature": 0.5,
     "skills": [
+      "agentic-operating",
       "scheduling-brief",
       "draft-and-revise",
       "workspace-filing"
@@ -166,6 +169,7 @@
     "backend_type": "chat",
     "temperature": 0.3,
     "skills": [
+      "agentic-operating",
       "meeting-synthesis",
       "draft-and-revise",
       "workspace-filing"

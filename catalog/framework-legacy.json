@@ -1,10 +1,5 @@
 [
   {
-    "id": "assistant",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
     "id": "chat-llm",
     "status": "exempt",
     "reason": "Bare model passthrough; no role behaviour by design."
@@ -25,22 +20,7 @@
     "reason": "Pre-framework role."
   },
   {
-    "id": "data-report-analyst",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "executive-assistant",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
     "id": "financial-reconciler",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "meeting-notetaker",
     "status": "pending-migration",
     "reason": "Pre-framework role."
   },
