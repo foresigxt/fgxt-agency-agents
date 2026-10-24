@@ -9,23 +9,23 @@ import type { AgencyAgentArtifact } from "../../schema/contract.ts";
  * FRONTMATTER-INVARIANT GUARD.
  *
  * Freezes every non-body frontmatter field (everything except `system_prompt`,
- * `conversation_starters`, and `active`) at its v0.4.0 catalog-release value.
- * v0.4.0 deliberately moved `skills`, `model`, `maxTokens` and
- * `callable_agent_ids` (Roles are bound to skills and pool-routed via
- * `modelPolicy.class` rather than pinning a model) — the baseline below
- * reflects that release. This test fails loudly if a later prompt edit
- * accidentally drifts a model ref, tier, persona, or any other frontmatter
- * field.
+ * `conversation_starters`, and `active`) at its v0.6.0 catalog-release value.
+ * v0.6.0 dropped every authored persona name and settled one naming rule
+ * (`name` is the id slug, `label` is the display name) on top of the v0.4.0
+ * move that bound skills and pool-routed roles via `modelPolicy.class` rather
+ * than pinning a model — the baseline below reflects that release. This test
+ * fails loudly if a later prompt edit accidentally drifts a model ref, tier,
+ * persona, or any other frontmatter field.
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
 
 const baseline = JSON.parse(
-  readFileSync(join(here, "__fixtures__/v0.4.0-frontmatter-baseline.json"), "utf8"),
+  readFileSync(join(here, "__fixtures__/v0.6.0-frontmatter-baseline.json"), "utf8"),
 ) as Record<string, Record<string, unknown>>;
 
-describe("frontmatter invariant: non-body fields frozen at v0.4.0", () => {
-  it("every agent's frontmatter (minus body + starters) is byte-identical to v0.4.0", () => {
+describe("frontmatter invariant: non-body fields frozen at v0.6.0", () => {
+  it("every agent's frontmatter (minus body + starters) is byte-identical to v0.6.0", () => {
     const { agents } = buildArtifacts(repoRoot);
     const strip = ({
       system_prompt: _system_prompt,
@@ -40,7 +40,7 @@ describe("frontmatter invariant: non-body fields frozen at v0.4.0", () => {
     }
   });
 
-  it("v0.4.0 invariant: no agent pins a model or maxTokens", () => {
+  it("v0.6.0 invariant: no agent pins a model or maxTokens", () => {
     const { agents } = buildArtifacts(repoRoot);
     for (const a of agents) {
       expect(a.model, `${a.id} still pins a model`).toBeUndefined();
@@ -48,7 +48,7 @@ describe("frontmatter invariant: non-body fields frozen at v0.4.0", () => {
     }
   });
 
-  it("v0.4.0 invariant: every non-internal agent binds at least one skill", () => {
+  it("v0.6.0 invariant: every non-internal agent binds at least one skill", () => {
     const { agents } = buildArtifacts(repoRoot);
     for (const a of agents.filter((x) => x.id !== "chat-llm")) {
       expect((a.skills ?? []).length, `${a.id} binds no skills`).toBeGreaterThan(0);
