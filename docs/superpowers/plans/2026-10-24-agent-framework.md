@@ -332,3 +332,57 @@ Run: `git diff main --stat -- dist/agents.json` and confirm by inspection that o
 git add skills/agent-architect agents/foresigxt/general/assistant.md src/__tests__ dist
 git commit -m "feat(skills): agent-architect builder skill, bound to assistant (FGXT-<n>)"
 ```
+
+### Task 6: Migrate the 13 legacy roles (operator decision, 2026-10-24)
+
+**Files:**
+- Modify: `agents/foresigxt/<division>/<id>.md` — 13 roles
+- Modify: `catalog/framework-legacy.json` — shrinks to `chat-llm` alone
+- Modify: `src/__tests__/framework-legacy.test.ts` — `FROZEN_PENDING` becomes `[]`
+- Test: `src/__tests__/framework-migration.test.ts`
+- Modify: `src/__tests__/__fixtures__/agents.json`, `v0.4.0-frontmatter-baseline.json`
+  (`persona_name` and `skills` for the 14 changed agents only)
+
+**Interfaces:** consumes `checkRoleCard` (Task 1). Produces the same published
+contract with 14 migrated agents and no persona name anywhere.
+
+- [ ] **Step 1: Write the failing test** in `src/__tests__/framework-migration.test.ts`:
+  every authored agent except `chat-llm` passes `checkRoleCard` with zero
+  violations; every such agent has `persona_name: null`; no `system_prompt`
+  contains Atlas, Mira, Ozzy, Theo, Yuki or Vera; `catalog/framework-legacy.json`
+  lists exactly `chat-llm` (exempt). Set `FROZEN_PENDING` in
+  `framework-legacy.test.ts` to `[]`, so any pending entry fails the frozen
+  snapshot test. Run it — FAIL.
+
+- [ ] **Step 2: Migrate the 13 roles**, one commit per division. For each role:
+  the seven sections in order; `Identity` opens "You are the `<label>` on the
+  Foresigxt team" ("You are the Assistant…" for the supervisor, which keeps its
+  first-point-of-contact role); `persona_name: null`; `agentic-operating`
+  prepended to `skills`; the bound skills named by backtick in `Method`. Shape
+  changes only — every responsibility, method step, output-contract deliverable
+  and guardrail from `main` survives, moved into a section, not dropped. The
+  assistant keeps its web-search-unavailable fallback and its citation rules.
+
+- [ ] **Step 3: Shrink the legacy list** as the roles go: remove each migrated
+  id from `catalog/framework-legacy.json`, so the list ends with `chat-llm`
+  alone and the frozen snapshot forbids any new pending entry.
+
+- [ ] **Step 4: Refresh the published artifacts** — `pnpm build`, copy
+  `dist/agents.json` and `dist/skills.json` into the parity fixtures, and edit
+  the `persona_name` and `skills` entries of the 14 changed agents in
+  `v0.4.0-frontmatter-baseline.json`. `dist/agents.json` must differ from
+  `main` in exactly those 14 agents, and `dist/skills.json` in exactly the two
+  new skills.
+
+- [ ] **Step 5: Mutation-prove** — put one persona name back on one role and one
+  id back in the legacy list as pending; each must turn the new test red; then
+  restore byte-identical.
+
+- [ ] **Step 6: Record the per-role preservation table** in the lane notes:
+  role → each guardrail and deliverable from `main` → the section it moved to.
+
+**Acceptance:** `pnpm build && pnpm test && pnpm lint && git diff --exit-code -- dist`
+green; no persona name survives in any prompt; the legacy list holds `chat-llm`
+only. The coordinator holds landing until app-web acks — no push, PR or merge
+from the lane.
+

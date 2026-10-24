@@ -299,3 +299,34 @@ Package-scoped vitest only.
    as FGXT-404. app-web generates the suggestion; this repo ships no
    `suggested_names` and no contract change. The six live persona names are
    dropped during migration only after app-web confirms FGXT-404 has shipped.
+
+## Total migration (2026-10-24) — operator decision
+
+The migration is total and lands in the same 0.6.0 release.
+
+- All 13 pre-framework roles migrate to the seven-section card in this release,
+  not in a follow-up. The legacy list ends this release with `chat-llm` alone.
+- The six live persona names are dropped now, not after their roles are
+  migrated: `financial-reconciler` ("Atlas"), `sales-researcher` ("Mira"),
+  `supply-chain-coordinator` ("Ozzy"), `recruiter` ("Theo"), `support-triage`
+  ("Yuki") and `competitive-analyst` ("Vera") all become `persona_name: null`.
+- `chat-llm` stays exempt — a bare model passthrough has no role behaviour to
+  conform to.
+
+**Superseded by this section.** The "Persona names" paragraph in "Contract and
+rollout" above — the six live legacy roles "keep them until their migration, so
+live users see no change in this release" — no longer holds: the names are
+dropped in this release. The closing line of "Assumptions to confirm" above —
+"the six live persona names are dropped during migration only after app-web
+confirms FGXT-404 has shipped" — is superseded the same way: the operator
+decided to drop them now, and the coordinator holds landing until app-web acks.
+
+**Unchanged.** The mechanism is the same one this design already described:
+`persona_name` stays in the published contract and is `null` for every
+conformant role, app-web renders the label when the persona is null, and the
+call name is the person's to assign at install or create time (app-web owns the
+suggestion, FGXT-404). The contract shape does not change; no new frontmatter
+field is added. The design basis for dropping credentials and persona names is
+unchanged: a role is identified by its role, and a credential or a call name in
+the prompt does not make the answer more accurate.
+
