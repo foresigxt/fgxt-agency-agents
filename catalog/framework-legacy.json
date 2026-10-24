@@ -3,50 +3,5 @@
     "id": "chat-llm",
     "status": "exempt",
     "reason": "Bare model passthrough; no role behaviour by design."
-  },
-  {
-    "id": "competitive-analyst",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "content-producer",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "customer-success-op",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "financial-reconciler",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "recruiter",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "sales-researcher",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "social-media-manager",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "supply-chain-coordinator",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
-  },
-  {
-    "id": "support-triage",
-    "status": "pending-migration",
-    "reason": "Pre-framework role."
   }
 ]

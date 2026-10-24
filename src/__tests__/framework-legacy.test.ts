@@ -15,22 +15,13 @@ import { buildArtifacts, readFrameworkLegacy } from "../build.ts";
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
 
-/** The authored roles that predate the framework, frozen at FGXT-405. */
-const FROZEN_PENDING = [
-  "assistant",
-  "competitive-analyst",
-  "content-producer",
-  "customer-success-op",
-  "data-report-analyst",
-  "executive-assistant",
-  "financial-reconciler",
-  "meeting-notetaker",
-  "recruiter",
-  "sales-researcher",
-  "social-media-manager",
-  "supply-chain-coordinator",
-  "support-triage",
-];
+/**
+ * The authored roles that predate the framework, frozen at FGXT-405.
+ *
+ * The total migration (operator decision, 2026-10-24) emptied it: every role
+ * has migrated, so the legacy list may not gain a pending entry again.
+ */
+const FROZEN_PENDING: string[] = [];
 
 describe("framework legacy list (FGXT-405)", () => {
   const legacy = readFrameworkLegacy(repoRoot);
