@@ -1,7 +1,8 @@
 {
   "assistant": {
     "id": "assistant",
-    "name": "Assistant",
+    "name": "assistant",
+    "label": "Assistant",
     "persona_name": null,
     "description": "AI assistant with access to specialized tools and agents",
     "division": "general",
@@ -10,8 +11,10 @@
     "backend_type": "chat",
     "temperature": 0.7,
     "skills": [
+      "agentic-operating",
       "delegation-routing",
-      "research-sweep"
+      "research-sweep",
+      "agent-architect"
     ],
     "callable_agent_ids": [],
     "category": "personal_assistant",
@@ -19,7 +22,8 @@
   },
   "chat-llm": {
     "id": "chat-llm",
-    "name": "Chat with LLM",
+    "name": "chat-llm",
+    "label": "Chat with LLM",
     "persona_name": null,
     "description": "Direct conversation with AI model - choose your own model",
     "division": "general",
@@ -36,7 +40,7 @@
     "id": "competitive-analyst",
     "name": "competitive-analyst",
     "label": "Competitive Analyst",
-    "persona_name": "Vera",
+    "persona_name": null,
     "description": "Researches and analyzes competitor products, pricing, positioning, and go-to-market strategies",
     "division": "research",
     "role": "specialist",
@@ -44,6 +48,7 @@
     "backend_type": "chat",
     "temperature": 0.4,
     "skills": [
+      "agentic-operating",
       "competitor-battlecard",
       "research-sweep",
       "source-vetting",
@@ -65,6 +70,7 @@
     "backend_type": "chat",
     "temperature": 0.7,
     "skills": [
+      "agentic-operating",
       "content-brief",
       "research-sweep",
       "draft-and-revise"
@@ -76,7 +82,7 @@
   "customer-success-op": {
     "id": "customer-success-op",
     "name": "customer-success-op",
-    "label": "Customer Success Operations",
+    "label": "Customer Success Operations Specialist",
     "persona_name": null,
     "description": "Manages customer relationships, health scoring, and success planning",
     "division": "support",
@@ -85,6 +91,7 @@
     "backend_type": "chat",
     "temperature": 0.4,
     "skills": [
+      "agentic-operating",
       "account-health-review",
       "structured-comparison",
       "workspace-filing"
@@ -105,6 +112,7 @@
     "backend_type": "chat",
     "temperature": 0.3,
     "skills": [
+      "agentic-operating",
       "report-build",
       "data-reconciliation",
       "structured-comparison"
@@ -125,6 +133,7 @@
     "backend_type": "chat",
     "temperature": 0.5,
     "skills": [
+      "agentic-operating",
       "scheduling-brief",
       "draft-and-revise",
       "workspace-filing"
@@ -137,7 +146,7 @@
     "id": "financial-reconciler",
     "name": "financial-reconciler",
     "label": "Financial Reconciler",
-    "persona_name": "Atlas",
+    "persona_name": null,
     "description": "Assists with transaction matching, discrepancy identification, and reconciliation reporting",
     "division": "finance",
     "role": "specialist",
@@ -145,6 +154,7 @@
     "backend_type": "chat",
     "temperature": 0.2,
     "skills": [
+      "agentic-operating",
       "ledger-reconciliation",
       "data-reconciliation",
       "workspace-filing"
@@ -165,6 +175,7 @@
     "backend_type": "chat",
     "temperature": 0.3,
     "skills": [
+      "agentic-operating",
       "meeting-synthesis",
       "draft-and-revise",
       "workspace-filing"
@@ -177,7 +188,7 @@
     "id": "recruiter",
     "name": "recruiter",
     "label": "Recruiter",
-    "persona_name": "Theo",
+    "persona_name": null,
     "description": "Assists talent acquisition teams with sourcing, screening, and candidate communication",
     "division": "people",
     "role": "specialist",
@@ -185,6 +196,7 @@
     "backend_type": "chat",
     "temperature": 0.5,
     "skills": [
+      "agentic-operating",
       "candidate-screening",
       "structured-comparison",
       "draft-and-revise"
@@ -197,7 +209,7 @@
     "id": "sales-researcher",
     "name": "sales-researcher",
     "label": "Sales Researcher",
-    "persona_name": "Mira",
+    "persona_name": null,
     "description": "Researches prospects, accounts, and market data to support sales teams",
     "division": "sales",
     "role": "specialist",
@@ -205,6 +217,7 @@
     "backend_type": "chat",
     "temperature": 0.4,
     "skills": [
+      "agentic-operating",
       "account-research",
       "research-sweep",
       "source-vetting"
@@ -225,6 +238,7 @@
     "backend_type": "chat",
     "temperature": 0.7,
     "skills": [
+      "agentic-operating",
       "social-calendar",
       "draft-and-revise"
     ],
@@ -236,7 +250,7 @@
     "id": "supply-chain-coordinator",
     "name": "supply-chain-coordinator",
     "label": "Supply Chain Coordinator",
-    "persona_name": "Ozzy",
+    "persona_name": null,
     "description": "Manages procurement workflows, vendor performance, and logistics coordination",
     "division": "operations",
     "role": "specialist",
@@ -244,6 +258,7 @@
     "backend_type": "chat",
     "temperature": 0.3,
     "skills": [
+      "agentic-operating",
       "vendor-comparison",
       "structured-comparison",
       "data-reconciliation"
@@ -256,7 +271,7 @@
     "id": "support-triage",
     "name": "support-triage",
     "label": "Support Triage",
-    "persona_name": "Yuki",
+    "persona_name": null,
     "description": "Assesses, categorizes, and routes incoming support tickets to reduce time-to-resolution",
     "division": "support",
     "role": "specialist",
@@ -264,6 +279,7 @@
     "backend_type": "chat",
     "temperature": 0.3,
     "skills": [
+      "agentic-operating",
       "ticket-triage",
       "structured-comparison"
     ],
@@ -275,13 +291,14 @@
     "id": "tender-bidding-manager",
     "name": "tender-bidding-manager",
     "label": "Tender Bidding Manager",
-    "persona_name": "Vera",
+    "persona_name": null,
     "description": "Decomposes tender documents, assesses bid/no-bid, and shapes bid strategy for public and private tenders",
     "division": "sales",
     "role": "specialist",
     "tier": "pro",
     "backend_type": "chat",
     "skills": [
+      "agentic-operating",
       "tender-decomposition",
       "bid-no-bid-assessment",
       "bid-strategy",

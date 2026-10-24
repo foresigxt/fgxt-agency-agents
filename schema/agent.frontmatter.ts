@@ -8,9 +8,9 @@ import { z } from "zod";
  *  - `system_prompt` — authored as the markdown body, and
  *  - `active` — joined from `catalog/activation.json` at build time.
  *
- * `label` is the mutable display name (e.g. "Sales Researcher"). It is
- * REQUIRED for the 12 specialists and ABSENT for `assistant` / `chat-llm`
- * (which display via `name`), so it is optional here.
+ * `label` is the mutable display name (e.g. "Sales Researcher"). Every agent
+ * carries one — `name` is the id slug and `label` is what a person sees — but
+ * it stays optional here so the published contract shape does not change.
  * `persona_name` is present on all agents as either a value or explicit `null`.
  */
 export const agentFrontmatterSchema = z

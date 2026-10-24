@@ -16,11 +16,13 @@ agents/upstream/                      # reserved (deferred — Plan A Task 6)
 skills/<name>/SKILL.md                # skills (interview in v0)
 catalog/activation.json               # allowlist of active agent ids → active:true
 catalog/divisions.json                # division metadata
+catalog/framework-legacy.json         # roles the framework gate does not check
 schema/agent.frontmatter.ts           # Zod: agent frontmatter (subset of contract)
 schema/skill.frontmatter.ts           # Zod: skill frontmatter
 schema/contract.ts                    # vendored consumer contract (parity oracle)
 src/parse.ts                          # frontmatter parse + validate (gray-matter)
-src/build.ts                          # walk + dedup + integrity + activation join
+src/framework.ts                      # role-card conformance checker (R1–R11)
+src/build.ts                          # walk + dedup + framework gate + integrity + activation join
 scripts/build.mjs                     # CLI → dist/*.json + dist/index.js
 scripts/vendor-upstream.mjs           # stub (deferred)
 dist/                                 # committed, published artifact
@@ -30,9 +32,10 @@ dist/                                 # committed, published artifact
 
 - **Agent frontmatter** carries every artifact field except `system_prompt`
   (the markdown body) and `active` (joined from `catalog/activation.json`).
-  `id` is a kebab-case slug and is globally unique. `label` is the display name
-  (present for specialists; omitted for `assistant`/`chat-llm`). `persona_name`
-  is present on every agent as a value or explicit `null`.
+  `id` is a kebab-case slug and is globally unique. `name` is the id slug and
+  `label` is the display name — every agent carries both, so a consumer that
+  falls back label → name always shows a display name. `persona_name` is
+  present on every agent as a value or explicit `null`.
 - **Skill frontmatter** carries `name`, `description`, `tier`, `tools`,
   `directive`; the body is `instructions`. `name` + `description` are the Claude
   Code minimum, so each `SKILL.md` drops into `.claude/skills/<name>/` unchanged.
@@ -40,6 +43,15 @@ dist/                                 # committed, published artifact
   builds as `active: false`.
 - `callable_agent_ids` may reference runtime-provided tool agents (e.g.
   `web-search`) via the `KNOWN_EXTERNAL_AGENT_IDS` allowlist in `src/build.ts`.
+- **Every new role follows the Agent Framework**: a seven-section card
+  (`Identity`, `Behaviours`, `Scope`, `Method`, `Output contract`,
+  `Guardrails`, `Escalation`) that binds the `agentic-operating` skill and
+  names no persona — the call name is assigned when the person installs the
+  agent. `pnpm build` fails on any violation and names the file, the rule and
+  the fix. Roles authored before the framework are grandfathered in
+  `catalog/framework-legacy.json`, a shrink-only list. The rules are in
+  `src/framework.ts`; the design is in
+  `docs/superpowers/specs/2026-10-24-agent-framework-design.md`.
 
 ## Commands
 

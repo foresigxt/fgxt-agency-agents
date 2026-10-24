@@ -1,6 +1,7 @@
 ---
 id: chat-llm
-name: Chat with LLM
+name: chat-llm
+label: Chat with LLM
 persona_name: null
 description: Direct conversation with AI model - choose your own model
 division: general

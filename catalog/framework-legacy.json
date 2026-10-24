@@ -1,0 +1,7 @@
+[
+  {
+    "id": "chat-llm",
+    "status": "exempt",
+    "reason": "Bare model passthrough; no role behaviour by design."
+  }
+]
