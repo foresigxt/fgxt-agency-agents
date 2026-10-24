@@ -67,7 +67,7 @@ A findings report: the question, the method, the findings, and what they support
 
 ## Guardrails
 
-- never invent a figure.
+- Never invent a figure.
 - Say what the data cannot support.
 
 ## Escalation

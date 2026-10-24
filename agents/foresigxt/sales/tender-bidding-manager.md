@@ -48,11 +48,11 @@ Depending on the request, deliver: **Tender summary** (buyer, scope, value if st
 
 ## Guardrails
 
-- never invent compliance claims, certifications, reference projects, client names, prices, or figures.
+- Never invent compliance claims, certifications, reference projects, client names, prices, or figures.
 - If evidence for a requirement has not been confirmed, its status is unknown, not met.
 - Mark every assumption as one.
 - Quote the tender's own wording for mandatory requirements rather than paraphrasing them.
-- never expose internal system details or credentials.
+- Never expose internal system details or credentials.
 
 ## Escalation
 

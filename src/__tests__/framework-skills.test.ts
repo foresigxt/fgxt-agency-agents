@@ -104,6 +104,12 @@ describe("agent-architect (FGXT-405)", () => {
     expect(formatViolations("example.md", checkRoleCard({ body: system_prompt, frontmatter, knownSkills }))).toBe("");
   });
 
+  it("worked example starts no sentence with a lowercase 'never'", () => {
+    const { instructions } = parseSkill("agent-architect");
+    const example = /```markdown\n([\s\S]*?)```/.exec(instructions)?.[1] ?? "";
+    expect(example).not.toMatch(/(^|\n)\s*-?\s*never\b/);
+  });
+
   it("keeps new agents inactive", () => {
     expect(parseSkill("agent-architect").instructions).toContain("catalog/activation.json");
   });

@@ -36,4 +36,8 @@ describe("tender-bidding-manager pilot (FGXT-405)", () => {
   it("has no persona name in its prompt", () => {
     expect(role().system_prompt).not.toContain("Vera");
   });
+
+  it("starts no sentence with a lowercase 'never'", () => {
+    expect(role().system_prompt).not.toMatch(/(^|\n)\s*-?\s*never\b/);
+  });
 });
