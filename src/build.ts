@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
+import { z } from "zod";
 import { parseAgentFile, parseSkillFile } from "./parse.ts";
 import { checkRoleCard, formatViolations } from "./framework.ts";
 import type { AgencyAgentArtifact, AgencySkillArtifact } from "../schema/contract.ts";
@@ -47,7 +48,17 @@ export interface LegacyEntry {
   reason: string;
 }
 
-const LEGACY_STATUSES = new Set<LegacyEntry["status"]>(["pending-migration", "exempt"]);
+const LEGACY_FILE = "catalog/framework-legacy.json";
+
+const legacyEntrySchema = z.object({
+  id: z.string({ required_error: "id is required" }).regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "id must be a kebab-case slug"),
+  status: z.enum(["pending-migration", "exempt"], {
+    errorMap: () => ({ message: "status must be 'pending-migration' or 'exempt'" }),
+  }),
+  reason: z.string({ required_error: "reason is required" }).trim().min(1, "reason must not be empty"),
+});
+
+const legacyListSchema = z.array(legacyEntrySchema);
 
 /**
  * Read the framework legacy list — the roles the conformance gate does not
@@ -55,24 +66,32 @@ const LEGACY_STATUSES = new Set<LegacyEntry["status"]>(["pending-migration", "ex
  * and a new role cannot be added to it without editing the frozen snapshot in
  * `src/__tests__/framework-legacy.test.ts`.
  *
- * A missing file means an empty list: every role is then checked.
+ * A missing file means an empty list: every role is then checked. A malformed
+ * file fails the build with an error that names the file and the field.
  */
 export function readFrameworkLegacy(root: string): Map<string, LegacyEntry> {
-  const path = join(root, "catalog", "framework-legacy.json");
+  const path = join(root, LEGACY_FILE);
   const entries = new Map<string, LegacyEntry>();
   if (!existsSync(path)) return entries;
-  const raw = JSON.parse(readFileSync(path, "utf8")) as LegacyEntry[];
-  for (const entry of raw) {
-    if (!LEGACY_STATUSES.has(entry.status)) {
-      throw new Error(
-        `framework-legacy.json: agent "${entry.id}" has an unknown status "${entry.status}"`,
-      );
-    }
+
+  let raw: unknown;
+  try {
+    raw = JSON.parse(readFileSync(path, "utf8")) as unknown;
+  } catch (error) {
+    throw new Error(`${LEGACY_FILE}: not valid JSON (${(error as Error).message})`);
+  }
+
+  const parsed = legacyListSchema.safeParse(raw);
+  if (!parsed.success) {
+    const problems = parsed.error.issues
+      .map((issue) => `${issue.path.join(".") || "the file"}: ${issue.message}`)
+      .join("; ");
+    throw new Error(`${LEGACY_FILE}: ${problems}`);
+  }
+
+  for (const entry of parsed.data) {
     if (entries.has(entry.id)) {
-      throw new Error(`framework-legacy.json: agent "${entry.id}" is listed more than once`);
-    }
-    if (entry.reason.trim() === "") {
-      throw new Error(`framework-legacy.json: agent "${entry.id}" has no reason`);
+      throw new Error(`${LEGACY_FILE}: agent "${entry.id}" is listed more than once`);
     }
     entries.set(entry.id, entry);
   }

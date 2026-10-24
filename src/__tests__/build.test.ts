@@ -150,4 +150,39 @@ describe("buildArtifacts", () => {
     );
     expect(() => buildArtifacts(root)).toThrow(/status/);
   });
+
+  /** The error the build raised for a malformed legacy file. */
+  function legacyFailure(contents: string): Error {
+    write("skills/interview/SKILL.md", INTERVIEW_SKILL);
+    write("agents/foresigxt/sales/y.md", agentMd("y", "plain body"));
+    write("catalog/framework-legacy.json", contents);
+    let caught: unknown;
+    try {
+      buildArtifacts(root);
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught, "the build should have failed on the legacy file").toBeInstanceOf(Error);
+    return caught as Error;
+  }
+
+  it("rejects a legacy file that is not an array", () => {
+    const error = legacyFailure(JSON.stringify({ id: "y" }));
+    expect(error.message).toContain("framework-legacy.json");
+    expect(error).not.toBeInstanceOf(TypeError);
+  });
+
+  it("rejects a legacy entry with no reason", () => {
+    const error = legacyFailure(JSON.stringify([{ id: "y", status: "pending-migration" }]));
+    expect(error.message).toContain("framework-legacy.json");
+    expect(error.message).toContain("reason");
+    expect(error).not.toBeInstanceOf(TypeError);
+  });
+
+  it("rejects a legacy entry with no id", () => {
+    const error = legacyFailure(JSON.stringify([{ status: "pending-migration", reason: "r" }]));
+    expect(error.message).toContain("framework-legacy.json");
+    expect(error.message).toContain("id");
+    expect(error).not.toBeInstanceOf(TypeError);
+  });
 });
