@@ -19,6 +19,16 @@ function write(relPath: string, contents: string): void {
   writeFileSync(abs, contents);
 }
 
+/** Grandfather the given agent ids in the framework legacy list. */
+function writeLegacy(ids: string[]): void {
+  write(
+    "catalog/framework-legacy.json",
+    JSON.stringify(
+      ids.map((id) => ({ id, status: "pending-migration", reason: "Pre-framework role." })),
+    ),
+  );
+}
+
 const INTERVIEW_SKILL = `---
 name: interview
 description: Ask before acting.
@@ -54,6 +64,7 @@ describe("buildArtifacts", () => {
     write("skills/interview/SKILL.md", INTERVIEW_SKILL);
     write("agents/foresigxt/sales/x.md", agentMd("x", "FORESIGXT"));
     write("agents/upstream/sales/x.md", agentMd("x", "UPSTREAM"));
+    writeLegacy(["x"]);
     write("catalog/activation.json", '["x"]');
 
     const { agents } = buildArtifacts(root);
@@ -66,6 +77,7 @@ describe("buildArtifacts", () => {
   it("marks unlisted ids inactive", () => {
     write("skills/interview/SKILL.md", INTERVIEW_SKILL);
     write("agents/foresigxt/sales/x.md", agentMd("x", "BODY"));
+    writeLegacy(["x"]);
     write("catalog/activation.json", "[]");
     const { agents } = buildArtifacts(root);
     expect(agents[0].active).toBe(false);
@@ -75,6 +87,7 @@ describe("buildArtifacts", () => {
     write("skills/interview/SKILL.md", INTERVIEW_SKILL);
     write("agents/upstream/a/x.md", agentMd("x", "A"));
     write("agents/upstream/b/x.md", agentMd("x", "B"));
+    writeLegacy(["x"]);
     expect(() => buildArtifacts(root)).toThrow(/collision.*x/i);
   });
 
@@ -83,6 +96,7 @@ describe("buildArtifacts", () => {
       "agents/foresigxt/sales/x.md",
       agentMd("x", "BODY").replace("  - interview", "  - ghost"),
     );
+    writeLegacy(["x"]);
     write("catalog/activation.json", '["x"]');
     expect(() => buildArtifacts(root)).toThrow(/ghost/);
   });
@@ -93,6 +107,7 @@ describe("buildArtifacts", () => {
       "agents/foresigxt/sales/x.md",
       agentMd("x", "BODY", "").replace("callable_agent_ids: []", "callable_agent_ids:\n  - ghost-agent\n"),
     );
+    writeLegacy(["x"]);
     write("catalog/activation.json", '["x"]');
     expect(() => buildArtifacts(root)).toThrow(/ghost-agent/);
   });
@@ -106,7 +121,33 @@ describe("buildArtifacts", () => {
         "callable_agent_ids:\n  - web-search\n",
       ),
     );
+    writeLegacy(["assistant"]);
     write("catalog/activation.json", '["assistant"]');
     expect(() => buildArtifacts(root)).not.toThrow();
+  });
+
+  it("fails the build on a non-conformant role not in the legacy list", () => {
+    write("skills/interview/SKILL.md", INTERVIEW_SKILL);
+    write("agents/foresigxt/sales/y.md", agentMd("y", "plain body"));
+    expect(() => buildArtifacts(root)).toThrow(
+      /framework conformance failed:[\s\S]*agents\/foresigxt\/sales\/y\.md: R1:/,
+    );
+  });
+
+  it("passes a legacy-listed role without checking it", () => {
+    write("skills/interview/SKILL.md", INTERVIEW_SKILL);
+    write("agents/foresigxt/sales/y.md", agentMd("y", "plain body"));
+    writeLegacy(["y"]);
+    expect(() => buildArtifacts(root)).not.toThrow();
+  });
+
+  it("rejects a legacy entry with an unknown status", () => {
+    write("skills/interview/SKILL.md", INTERVIEW_SKILL);
+    write("agents/foresigxt/sales/y.md", agentMd("y", "plain body"));
+    write(
+      "catalog/framework-legacy.json",
+      JSON.stringify([{ id: "y", status: "later", reason: "r" }]),
+    );
+    expect(() => buildArtifacts(root)).toThrow(/status/);
   });
 });
