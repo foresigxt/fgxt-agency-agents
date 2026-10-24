@@ -32,9 +32,10 @@ dist/                                 # committed, published artifact
 
 - **Agent frontmatter** carries every artifact field except `system_prompt`
   (the markdown body) and `active` (joined from `catalog/activation.json`).
-  `id` is a kebab-case slug and is globally unique. `label` is the display name
-  (present for specialists; omitted for `assistant`/`chat-llm`). `persona_name`
-  is present on every agent as a value or explicit `null`.
+  `id` is a kebab-case slug and is globally unique. `name` is the id slug and
+  `label` is the display name — every agent carries both, so a consumer that
+  falls back label → name always shows a display name. `persona_name` is
+  present on every agent as a value or explicit `null`.
 - **Skill frontmatter** carries `name`, `description`, `tier`, `tools`,
   `directive`; the body is `instructions`. `name` + `description` are the Claude
   Code minimum, so each `SKILL.md` drops into `.claude/skills/<name>/` unchanged.

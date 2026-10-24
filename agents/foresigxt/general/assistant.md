@@ -1,6 +1,7 @@
 ---
 id: assistant
-name: Assistant
+name: assistant
+label: Assistant
 persona_name: null
 description: AI assistant with access to specialized tools and agents
 division: general
