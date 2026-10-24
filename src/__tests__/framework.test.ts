@@ -77,6 +77,65 @@ describe("role-card checker", () => {
     expect(check(body)).toEqual([]);
   });
 
+  it("R1: a ### line inside a fence is ignored", () => {
+    const body = withSection("Method", "Use `report-build`.\n```text\n### Habits\n## Not a heading\n```");
+    expect(check(body)).toEqual([]);
+  });
+
+  it("R1: a ## line inside a ~~~ fence is ignored", () => {
+    const body = withSection("Method", "Use `report-build`.\n~~~\n## X\n~~~");
+    expect(check(body)).toEqual([]);
+  });
+
+  it("R1: an unclosed fence fails", () => {
+    const body = withSection("Escalation", "Stop and ask when the data is missing.\n```\ncode");
+    expect(rules(check(body))).toContain("R1");
+  });
+
+  it("R1: a fence opened as prose in the last section fails", () => {
+    const body = withSection("Escalation", "Stop and ask when the data is missing.\n```\n## Secret extra");
+    expect(rules(check(body))).toContain("R1");
+  });
+
+  it("R1: a fence is not closed by a different marker", () => {
+    const body = withSection("Escalation", "Stop and ask when the data is missing.\n```\ncode\n~~~");
+    expect(rules(check(body))).toContain("R1");
+  });
+
+  it("R1: a shorter marker does not close a longer fence", () => {
+    const body = withSection("Escalation", "Stop and ask when the data is missing.\n````\ncode\n```");
+    expect(rules(check(body))).toContain("R1");
+  });
+
+  it("R1: a longer marker closes a shorter fence", () => {
+    const body = withSection("Method", "Use `report-build`.\n```\ncode\n`````");
+    expect(check(body)).toEqual([]);
+  });
+
+  it("R1: a heading that names two sections fails", () => {
+    const body = card([
+      ["Identity, Behaviours", "You are the Data Scientist on the Foresigxt team."],
+      ["Scope", "In: analysis. Out: data engineering."],
+      ["Method", "Uses `report-build`."],
+      ["Output contract", "A findings report."],
+      ["Guardrails", "Never invent figures."],
+      ["Escalation", "Stop and ask when the data is missing."],
+    ]);
+    expect(rules(check(body))).toContain("R1");
+  });
+
+  it("R1: a failure short-circuits R2, R3 and R11", () => {
+    const body = card([
+      ["Identity", "You are Vera, a scientist. " + "word ".repeat(70)],
+      ["Behaviours", "Shows the method."],
+      ["Scope", "In: analysis. Out: data engineering."],
+      ["Method", "Uses `report-build`."],
+      ["Output contract", "   "],
+      ["Guardrails", "Never invent figures."],
+    ]);
+    expect(rules(check(body))).toEqual(["R1"]);
+  });
+
   it("R1: CRLF headings are recognised", () => {
     expect(check(VALID.replace(/\n/g, "\r\n"))).toEqual([]);
   });
@@ -108,6 +167,7 @@ describe("role-card checker", () => {
 
   it("R7: credential claims", () => {
     expect(rules(check(withSection("Behaviours", "Brings 15 years of experience.")))).toContain("R7");
+    expect(rules(check(withSection("Behaviours", "Brings 15 years experience.")))).toContain("R7");
     expect(rules(check(withSection("Behaviours", "10+ years in the field.")))).toContain("R7");
     expect(check(withSection("Behaviours", "Reviews a 5 years contract term."))).toEqual([]);
   });
@@ -125,6 +185,14 @@ describe("role-card checker", () => {
   it("R10: persona name set", () => {
     expect(rules(check(VALID, { persona_name: "Vera" }))).toContain("R10");
     expect(rules(check(VALID, { persona_name: undefined }))).toContain("R10");
+  });
+
+  it("R10: the message names the persona name, or says it is missing", () => {
+    const [named] = check(VALID, { persona_name: "Vera" });
+    expect(named.message).toContain('"Vera"');
+    const [missing] = check(VALID, { persona_name: undefined });
+    expect(missing.message).toContain("missing");
+    expect(missing.message).not.toContain("null instead of null");
   });
 
   it("R11: Identity does not name the role", () => {

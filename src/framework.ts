@@ -48,25 +48,40 @@ interface CardSections {
   text: Map<string, string>;
   /** Everything before the first `##` heading. */
   preamble: string;
+  /** True when a code fence is still open at the end of the body. */
+  unclosedFence: boolean;
 }
+
+/** A fenced code block opens with three or more backticks or tildes. */
+const FENCE_MARKER = /^(`{3,}|~{3,})/;
 
 /**
  * Split a card into its `##` sections.
  *
  * A `##` line inside a fenced code block is content, not a heading, and
- * `###` sub-headings are content too — only `## ` starts a section.
+ * `###` sub-headings are content too — only `## ` starts a section. A fence
+ * opens with three or more backticks or tildes and closes only on the same
+ * marker at that length or longer, so a stray marker in prose cannot swallow
+ * the rest of the card.
  */
 function splitCard(body: string): CardSections {
   const headings: string[] = [];
   const text = new Map<string, string>();
   const preambleLines: string[] = [];
-  let inFence = false;
+  let fence: { marker: string; length: number } | null = null;
   let current: string | null = null;
   let currentLines: string[] = [];
 
   for (const line of body.split(/\r?\n/)) {
-    if (line.trimStart().startsWith("```")) inFence = !inFence;
-    if (!inFence) {
+    const marker = FENCE_MARKER.exec(line.trimStart())?.[1];
+    if (marker !== undefined) {
+      if (fence === null) {
+        fence = { marker: marker[0], length: marker.length };
+      } else if (marker[0] === fence.marker && marker.length >= fence.length) {
+        fence = null;
+      }
+    }
+    if (fence === null) {
       const heading = /^##\s+(.*)$/.exec(line)?.[1].trim();
       if (heading !== undefined) {
         if (current !== null) text.set(current, currentLines.join("\n"));
@@ -81,7 +96,7 @@ function splitCard(body: string): CardSections {
   }
   if (current !== null) text.set(current, currentLines.join("\n"));
 
-  return { headings, text, preamble: preambleLines.join("\n") };
+  return { headings, text, preamble: preambleLines.join("\n"), unclosedFence: fence !== null };
 }
 
 /**
@@ -102,13 +117,15 @@ function wordCount(text: string): number {
 /** R1 — the seven sections, exactly, in order, with nothing in front of Identity. */
 function checkR1(sections: CardSections): Violation[] {
   const violations: Violation[] = [];
-  const expected = ROLE_CARD_SECTIONS.join(", ");
-  const found = sections.headings.join(", ");
-  if (found !== expected) {
+  const expected = [...ROLE_CARD_SECTIONS];
+  const found = sections.headings;
+  const matches = found.length === expected.length && found.every((heading, i) => heading === expected[i]);
+  if (!matches) {
+    const list = (headings: string[]) => headings.map((heading) => `"${heading}"`).join(", ");
     violations.push({
       rule: "R1",
-      message: `the card has ## sections [${found}] but must have exactly [${expected}] in order`,
-      fix: `give the card exactly these ## sections, in order: ${expected}`,
+      message: `the card has ## sections [${list(found)}] but must have exactly [${list(expected)}] in order`,
+      fix: `give the card exactly these ## sections, in order: ${expected.join(", ")}`,
     });
   }
   if (sections.preamble.trim() !== "") {
@@ -116,6 +133,13 @@ function checkR1(sections: CardSections): Violation[] {
       rule: "R1",
       message: "there is text before the ## Identity section",
       fix: "move the opening text into the Identity section",
+    });
+  }
+  if (sections.unclosedFence) {
+    violations.push({
+      rule: "R1",
+      message: "the card ends inside an unclosed code fence",
+      fix: "close the code fence, or drop the marker that opens it",
     });
   }
   return violations;
@@ -197,8 +221,8 @@ function checkR6(input: RoleCardInput): Violation[] {
 }
 
 /** R7 — no credentials; describe the behaviour instead. */
-const CREDENTIAL_CLAIM = /\b\d+\+?\s*years?\s+of\s+experience\b/i;
-const TENURE_CLAIM = /\b\d+\+\s*years?\b/i;
+const CREDENTIAL_CLAIM = /\b\d+\+?\s*years?\b(\s+of)?\s+experience/i;
+const TENURE_CLAIM = /\b\d+\+\s*years\b/i;
 
 function checkR7(body: string): Violation[] {
   const match = CREDENTIAL_CLAIM.exec(body) ?? TENURE_CLAIM.exec(body);
@@ -245,10 +269,13 @@ function checkR9(body: string): Violation[] {
 /** R10 — the role is named by its role, not by an authored persona name. */
 function checkR10(frontmatter: RoleCardInput["frontmatter"]): Violation[] {
   if (frontmatter.persona_name === null) return [];
+  const missing = frontmatter.persona_name === undefined;
   return [
     {
       rule: "R10",
-      message: `persona_name is ${JSON.stringify(frontmatter.persona_name ?? null)} instead of null`,
+      message: missing
+        ? "persona_name is missing; a conformant role sets it to null"
+        : `persona_name is ${JSON.stringify(frontmatter.persona_name)} instead of null`,
       fix: "set persona_name to null; the call name is assigned when the person installs the agent",
     },
   ];
