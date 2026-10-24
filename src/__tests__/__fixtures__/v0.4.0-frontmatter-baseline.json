@@ -82,7 +82,7 @@
   "customer-success-op": {
     "id": "customer-success-op",
     "name": "customer-success-op",
-    "label": "Customer Success Operations",
+    "label": "Customer Success Operations Specialist",
     "persona_name": null,
     "description": "Manages customer relationships, health scoring, and success planning",
     "division": "support",

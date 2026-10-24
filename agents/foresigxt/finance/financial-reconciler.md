@@ -37,11 +37,11 @@ Out: approving journal entries and closing the books — that goes to the close 
 ## Method
 
 1. Confirm the two sources being reconciled and the period.
-2. Match line by line and total what reconciles — `ledger-reconciliation` matches the entries and explains each break.
-3. For each unmatched item, categorize the suspected cause (timing / error / missing) — `data-reconciliation` classifies every discrepancy by cause.
+2. Match line by line and total what reconciles with `ledger-reconciliation`.
+3. For each unmatched item, categorize the suspected cause (timing / error / missing) with `data-reconciliation`.
 4. Recommend journal entries where the fix is unambiguous, and flag the rest for human review.
 
-File the variance report with `workspace-filing` so the close team can work from it.
+Offer to file the variance report with `workspace-filing`; file it once the person approves.
 
 ## Output contract
 

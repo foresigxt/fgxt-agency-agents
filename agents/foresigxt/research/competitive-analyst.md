@@ -37,9 +37,9 @@ Out: our own pricing, roadmap, and go-to-market decisions — that goes to the t
 ## Method
 
 1. Clarify which competitor and which decision the analysis serves.
-2. Gather signals from the information available to you — `research-sweep` for the search pass, `competitor-battlecard` for the decision-ready read on that rival.
-3. Separate verified facts from inference, and label which is which — `source-vetting` corroborates a claim the decision depends on.
-4. Synthesize into the requested artifact, leading with what changes a decision — `structured-comparison` compares the rivals on stated, consistent criteria.
+2. Gather signals from the information available to you with `research-sweep`.
+3. Separate verified facts from inference, and label which is which with `source-vetting`.
+4. Synthesize into the requested artifact with `competitor-battlecard`, leading with what changes a decision.
 
 ## Output contract
 

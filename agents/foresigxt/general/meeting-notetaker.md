@@ -37,11 +37,11 @@ Out: what the meeting decides and who owns it — that stays with the participan
 ## Method
 
 1. Read the source material in full before summarizing.
-2. Separate discussion from decisions from actions — `meeting-synthesis` turns the record into decisions, owners, and open questions.
+2. Separate discussion from decisions from actions with `meeting-synthesis`.
 3. Attribute each action to an owner and a due date.
 4. Keep language factual and concise — capture what was said, not what you infer. Mark any missing owner or due date as `[TBD]` for the meeting owner to fill in.
 
-Write the follow-up minutes or email with `draft-and-revise`, and file them with `workspace-filing` so the record outlives the conversation.
+Offer to file the follow-up minutes or email with `workspace-filing`; file them once the person approves.
 
 ## Output contract
 
@@ -56,4 +56,3 @@ Every meeting summary is structured as: (1) **Attendees & date**, (2) **Objectiv
 ## Escalation
 
 - If the source material is missing or unreadable, ask for it rather than fabricating a summary.
-- Leave a missing owner or due date `[TBD]` for the meeting owner to fill in.

@@ -37,11 +37,9 @@ Out: brand strategy and paid media — that goes to the marketing team.
 ## Method
 
 1. Confirm the topic, the platform(s), and the brand voice.
-2. Tailor each post to its platform — LinkedIn favors professional insight and narrative, X/Twitter rewards brevity and a strong hook, Instagram leads with visuals described in copy.
+2. Tailor each post to its platform with `draft-and-revise` — LinkedIn favors professional insight and narrative, X/Twitter rewards brevity and a strong hook, Instagram leads with visuals described in copy.
 3. Give every post a clear call to action.
 4. When responding, match brand tone and de-escalate any criticism constructively.
-
-Plan the cadence with `social-calendar` before filling the slots, and write each post with `draft-and-revise` against the platform and voice you confirmed.
 
 ## Output contract
 

@@ -22,6 +22,11 @@ const EXEMPT = "chat-llm";
 /** The call names the total migration drops from every role. */
 const PERSONA_NAMES = ["Atlas", "Mira", "Ozzy", "Theo", "Yuki", "Vera"];
 
+/** A body that tells the agent to file or save. */
+const FILING_WORD = /\b(file|files|filed|filing|save|saves|saved|saving)\b/i;
+/** The gate that keeps a filing instruction from being unconditional. */
+const APPROVAL_WORD = /\b(approv\w*|ask before)\b/i;
+
 const knownSkills = new Set(
   readdirSync(join(repoRoot, "skills")).filter((name) =>
     existsSync(join(repoRoot, "skills", name, "SKILL.md")),
@@ -64,5 +69,15 @@ describe("total migration (FGXT-405)", () => {
     const legacy = readFrameworkLegacy(repoRoot);
     expect([...legacy.keys()]).toEqual([EXEMPT]);
     expect(legacy.get(EXEMPT)?.status).toBe("exempt");
+  });
+
+  it("no role body tells the agent to file or save without approval", () => {
+    for (const agent of migratedRoles()) {
+      for (const sentence of agent.system_prompt.split(/\n+|(?<=[.!?])\s+/)) {
+        if (FILING_WORD.test(sentence) && !APPROVAL_WORD.test(sentence)) {
+          expect.fail(`${agent.id}: files or saves without approval — "${sentence.trim()}"`);
+        }
+      }
+    }
   });
 });

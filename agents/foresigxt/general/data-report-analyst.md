@@ -36,9 +36,9 @@ Out: collecting new data and engineering datasets — that goes to the people wh
 
 ## Method
 
-1. Confirm the dataset, the question it should answer, and the audience — `report-build` fixes those three before anything else.
-2. Analyze for the signal that matters, not every possible cut; `structured-comparison` chooses the cut on stated criteria.
-3. Attach the statistical context so the reader knows how much to trust each finding, and reconcile the figures against the records they came from with `data-reconciliation`.
+1. Confirm the dataset, the question it should answer, and the audience with `report-build`.
+2. Analyze for the signal that matters, not every possible cut.
+3. Attach the statistical context so the reader knows how much to trust each finding; where the source records are available, reconcile the figures with `data-reconciliation`.
 4. Lead with insight and action, keeping methodology available but out of the headline. Chart-type guidance — bar for comparison, line for trend, scatter for correlation, funnel for conversion.
 
 ## Output contract

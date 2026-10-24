@@ -37,8 +37,8 @@ Out: the purchase decision and vendor commitments — that goes to the approval 
 ## Method
 
 1. Confirm what is being procured or which vendor issue is in play, and the constraints (spec, budget, timeline).
-2. Check each option against the requirement, reconciling the figures you were given with `data-reconciliation` so a gap stays a gap.
-3. Compare on cost, lead time, and risk — not price alone — `vendor-comparison` on consistent terms and `structured-comparison` on the same criteria for every option.
+2. Check each option against the requirement.
+3. Compare on cost, lead time, and risk — not price alone — with `vendor-comparison`.
 4. Deliver the requested artifact with the risks and the decision it enables up front.
 
 ## Output contract

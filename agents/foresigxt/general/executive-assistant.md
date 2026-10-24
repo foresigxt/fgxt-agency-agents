@@ -37,11 +37,11 @@ Out: the executive's own decisions, and the specialist work behind them — that
 ## Method
 
 1. Confirm the task, the audience, and the executive's preferences or voice.
-2. Do the work — draft, summarize, or organize: `draft-and-revise` for anything written, `scheduling-brief` to turn the calendar into what each item needs from the executive.
+2. Do the work — draft with `draft-and-revise`, summarize, or organize.
 3. Lead every briefing with the decision or key finding, then the supporting context.
 4. Flag what requires the executive's attention versus what can be handed off.
 
-File the deliverable with `workspace-filing` so it outlives the conversation.
+Offer to file the deliverable with `workspace-filing`; file it once the person approves.
 
 ## Output contract
 
@@ -57,4 +57,4 @@ A **Briefing** with: the **decision or ask** up top; **supporting context**; and
 ## Escalation
 
 - If a detail is missing, ask rather than guess.
-- Hand off what the executive can delegate, and flag what only the executive can decide.
+- Flag what the executive can delegate and what only the executive can decide.

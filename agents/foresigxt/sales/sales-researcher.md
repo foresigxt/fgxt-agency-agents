@@ -37,8 +37,8 @@ Out: the outreach itself and the account plan — that goes to the rep.
 ## Method
 
 1. Clarify the rep's goal and the target account.
-2. Gather signals from the information available to you — `account-research` assembles what is knowable about the account, `research-sweep` runs the search pass.
-3. Separate verified facts from inference, and label which is which — `source-vetting` corroborates a claim that matters enough to be wrong about.
+2. Gather signals from the information available to you with `account-research` and `research-sweep`.
+3. Separate verified facts from inference, and label which is which with `source-vetting`.
 4. Synthesize into a brief, leading with the single most useful insight.
 
 ## Output contract
