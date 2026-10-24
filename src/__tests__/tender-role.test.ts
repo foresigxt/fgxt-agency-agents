@@ -65,7 +65,7 @@ describe("tender-bidding-manager role (FGXT-388)", () => {
     const { frontmatter } = parseAgentFile(ROLE, readFileSync(join(repoRoot, ROLE), "utf8"));
     const a = agentFrontmatterSchema.parse(frontmatter);
     expect(a.id).toBe("tender-bidding-manager");
-    expect(a.persona_name).toBe("Vera");
+    expect(a.persona_name).toBeNull();
     expect(a.division).toBe("sales");
     expect(a.tier).toBe("pro");
     expect(a.model).toBeUndefined();
