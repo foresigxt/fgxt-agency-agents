@@ -8,7 +8,7 @@ role: supervisor
 tier: free
 backend_type: chat
 temperature: 0.7
-skills: [delegation-routing, research-sweep]
+skills: [delegation-routing, research-sweep, agent-architect]
 callable_agent_ids: []
 category: personal_assistant
 visibility: internal

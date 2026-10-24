@@ -11,7 +11,8 @@
     "temperature": 0.7,
     "skills": [
       "delegation-routing",
-      "research-sweep"
+      "research-sweep",
+      "agent-architect"
     ],
     "callable_agent_ids": [],
     "category": "personal_assistant",

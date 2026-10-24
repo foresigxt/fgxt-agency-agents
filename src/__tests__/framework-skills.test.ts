@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseSkillFile } from "../parse.ts";
-import { FRAMEWORK_CORE_SKILL } from "../framework.ts";
+import { parseAgentFile, parseSkillFile } from "../parse.ts";
+import { checkRoleCard, formatViolations, FRAMEWORK_CORE_SKILL, ROLE_CARD_SECTIONS } from "../framework.ts";
 
 /**
  * FGXT-405 — the two skills the Agent Framework adds: the shared operating
@@ -64,5 +64,52 @@ describe("agentic-operating (FGXT-405)", () => {
 
   it("has no shouty emphasis", () => {
     expect(skillSource(FRAMEWORK_CORE_SKILL)).not.toMatch(/\b(MUST|NEVER|CRITICAL|IMPORTANT)\b/);
+  });
+});
+
+const ARCHITECT_DIRECTIVE =
+  "When asked to create a new agent or role, interview for the role before drafting anything, and deliver it in the Foresigxt Agent Framework shape.";
+
+const ASSISTANT = "agents/foresigxt/general/assistant.md";
+
+const knownSkills = new Set(
+  readdirSync(join(repoRoot, "skills")).filter((name) =>
+    existsSync(join(repoRoot, "skills", name, "SKILL.md")),
+  ),
+);
+
+describe("agent-architect (FGXT-405)", () => {
+  it("parses with the spec's directive", () => {
+    const { frontmatter } = parseSkill("agent-architect");
+    expect(frontmatter.name).toBe("agent-architect");
+    expect(frontmatter.tier).toBe("pro");
+    expect(frontmatter.tools).toEqual([]);
+    expect(frontmatter.directive).toBe(ARCHITECT_DIRECTIVE);
+  });
+
+  it("names every role-card section", () => {
+    const { instructions } = parseSkill("agent-architect");
+    for (const section of ROLE_CARD_SECTIONS) {
+      expect(instructions, `missing role-card section: ${section}`).toContain(section);
+    }
+    expect(instructions).toContain("agentic-operating");
+    expect(instructions).toContain("persona_name: null");
+  });
+
+  it("worked example passes the checker", () => {
+    const { instructions } = parseSkill("agent-architect");
+    const example = /```markdown\n([\s\S]*?)```/.exec(instructions)?.[1];
+    expect(example, "the skill carries no ```markdown fence").toBeTruthy();
+    const { frontmatter, system_prompt } = parseAgentFile("example.md", example ?? "");
+    expect(formatViolations("example.md", checkRoleCard({ body: system_prompt, frontmatter, knownSkills }))).toBe("");
+  });
+
+  it("keeps new agents inactive", () => {
+    expect(parseSkill("agent-architect").instructions).toContain("catalog/activation.json");
+  });
+
+  it("assistant binds agent-architect", () => {
+    const { frontmatter } = parseAgentFile(ASSISTANT, readFileSync(join(repoRoot, ASSISTANT), "utf8"));
+    expect(frontmatter.skills).toContain("agent-architect");
   });
 });
