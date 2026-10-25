@@ -9,23 +9,32 @@ import type { AgencyAgentArtifact } from "../../schema/contract.ts";
  * FRONTMATTER-INVARIANT GUARD.
  *
  * Freezes every non-body frontmatter field (everything except `system_prompt`,
- * `conversation_starters`, and `active`) at its v0.4.0 catalog-release value.
- * v0.4.0 deliberately moved `skills`, `model`, `maxTokens` and
- * `callable_agent_ids` (Roles are bound to skills and pool-routed via
- * `modelPolicy.class` rather than pinning a model) — the baseline below
- * reflects that release. This test fails loudly if a later prompt edit
- * accidentally drifts a model ref, tier, persona, or any other frontmatter
- * field.
+ * `conversation_starters`, and `active`) at its v0.6.0 catalog-release value.
+ * v0.6.0 dropped every authored persona name and settled one naming rule
+ * (`name` is the id slug, `label` is the display name) on top of the v0.4.0
+ * move that bound skills and pool-routed roles via `modelPolicy.class` rather
+ * than pinning a model — the baseline below reflects that release. This test
+ * fails loudly if a later prompt edit accidentally drifts a model ref, tier,
+ * persona, or any other frontmatter field.
+ *
+ * The baseline file is named for the release it freezes, so its path is built
+ * from `package.json` `version` rather than hard-coded — one version bump and
+ * one fixture rename move both together (see `release-version.test.ts`, which
+ * requires that fixture to exist under exactly this name).
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
 
+const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+  version: string;
+};
+
 const baseline = JSON.parse(
-  readFileSync(join(here, "__fixtures__/v0.4.0-frontmatter-baseline.json"), "utf8"),
+  readFileSync(join(here, "__fixtures__", `v${pkg.version}-frontmatter-baseline.json`), "utf8"),
 ) as Record<string, Record<string, unknown>>;
 
-describe("frontmatter invariant: non-body fields frozen at v0.4.0", () => {
-  it("every agent's frontmatter (minus body + starters) is byte-identical to v0.4.0", () => {
+describe(`frontmatter invariant: non-body fields frozen at v${pkg.version}`, () => {
+  it(`every agent's frontmatter (minus body + starters) is byte-identical to v${pkg.version}`, () => {
     const { agents } = buildArtifacts(repoRoot);
     const strip = ({
       system_prompt: _system_prompt,

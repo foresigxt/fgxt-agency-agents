@@ -96,9 +96,22 @@ and `zod` are `devDependencies` (build-only) — consumers pull no runtime deps.
 
 ## Releasing
 
-There is no npm publish step — the git tag *is* the release. To cut one: bump
-`version` in `package.json`, ensure `pnpm build` leaves `dist/` clean (CI's
-`git diff --exit-code -- dist` gate enforces this), then:
+There is no npm publish step — the git tag *is* the release. Cutting one takes three
+steps, and `src/__tests__/release-version.test.ts` fails the build until the first two
+are done:
+
+1. **Bump `version` in `package.json`**, and add a `## [<version>]` heading to
+   `CHANGELOG.md` for it. The guard requires the two to agree: `package.json`
+   `version` must equal the **newest** `## [x.y.z]` heading in the changelog, so the
+   changelog is written newest-first. A release that bumps one without the other
+   fails `release-version.test.ts`.
+2. **Rename the frontmatter baseline fixture** to
+   `src/__tests__/__fixtures__/v<version>-frontmatter-baseline.json`. The baseline
+   freezes one release's non-body frontmatter, so it is named for the release it
+   freezes; the guard asserts a fixture with that exact name exists, and
+   `frontmatter-invariant.test.ts` reads it by that name too.
+3. **Ensure `pnpm build` leaves `dist/` clean** (CI's `git diff --exit-code -- dist`
+   gate enforces this), then tag and push:
 
 ```bash
 git tag v0.1.0 && git push origin main --tags
