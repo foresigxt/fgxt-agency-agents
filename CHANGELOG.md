@@ -7,8 +7,10 @@ The release is the git tag — there is no npm publish step. Consumers install
 
 ## [0.6.0] - 2026-10-24
 
-> `0.5.0` was reserved for FGXT-389 (tender-role activation, the app-web dependency bump and the
-> catalog seed) and was never tagged. This release follows `0.4.0` directly.
+> `0.5.0` is **retired**, not merely untagged: the number was reserved for FGXT-389 and will
+> never be released. FGXT-389 — the `tender-bidding-manager` activation, the app-web dependency
+> bump and the catalog seed — **ships in a later version**, not in this one. This release
+> follows `0.4.0` directly, so the version sequence is 0.4.0 → 0.6.0.
 
 ### Agent Framework v1 (FGXT-405)
 
@@ -23,6 +25,9 @@ publish a card that does not.
   persona name; `Identity` names the role.
 - **Build enforcement** (`src/build.ts`) — a non-conforming card fails the build. The legacy list
   is validated with zod and may only shrink.
+- **`Scope` convention** — every conformant role states its boundary as two labelled clauses:
+  `In:` what the role does, `Out:` what it does not, each naming where the excluded work goes
+  (`Out: … — that goes to the close team`). A role card with no `Scope` section fails R1.
 - **14 of the 15 agents conform** to the card. `chat-llm` is the only exception: it is a bare
   model passthrough with no role behaviour, and it stays on the framework-legacy list alone.
 - **Persona names dropped** — `persona_name` is `null` on every agent. The call name is the
@@ -32,9 +37,12 @@ publish a card that does not.
   `Chat with LLM`).
 - **Two new skills** — `agentic-operating`, the shared operating skill bound by every conformant
   role, and `agent-architect`, the role-card builder bound to `assistant`.
-- Every one of the 14 agents that existed at `0.4.0` has a new prompt and new frontmatter, and
-  `tender-bidding-manager` is new. `dist/agents.json` therefore differs from `0.4.0` in all 15
-  agents; `dist/skills.json` gains six skills (the two above plus the four tender skills below).
+- Every one of the 14 agents that existed at `0.4.0` has a new prompt, and 13 of them have new
+  frontmatter. The exception is `chat-llm`: it is exempt from the card, so its body is unchanged
+  and only two frontmatter fields move — `name` becomes the id slug (`chat-llm`) and the display
+  name moves to a new `label` (`Chat with LLM`). `tender-bidding-manager` is new.
+  `dist/agents.json` therefore differs from `0.4.0` in all 15 agents; `dist/skills.json` gains six
+  skills (the two above plus the four tender skills below).
 
 ### Tender skills and role (FGXT-388)
 
@@ -48,6 +56,10 @@ publish a card that does not.
 - `persona_name` is `null` on every agent, so app-web must re-sync installed copies and
   refresh system-role prompts (FGXT-410). A consumer that keys on the old persona names breaks.
 - Every authored role's `system_prompt` is restructured to the role card.
+- `customer-success-op`'s `label` changes from `Customer Success Operations` to
+  `Customer Success Operations Specialist` (FGXT-405, `5844aea`), so the Identity reads
+  "You are the Customer Success Operations Specialist on the Foresigxt team". A consumer that
+  keys on the old label breaks. The label is display-only — `name` is unchanged.
 - `package.json` `version` was `0.3.0` at `v0.4.0`; it now matches the release.
 
 ## [0.4.0] - 2026-08-28

@@ -27,7 +27,15 @@ const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as 
 };
 const changelog = readFileSync(join(repoRoot, "CHANGELOG.md"), "utf8");
 
-/** The newest `## [x.y.z]` heading in the changelog — the release being cut. */
+/**
+ * The newest `## [x.y.z]` heading in the changelog — the release being cut.
+ *
+ * The changelog is written NEWEST-FIRST: the first `## [x.y.z]` heading in the
+ * file is the most recent release, so `headings[0]` is the one to compare
+ * against `package.json` `version`. A release added at the bottom of the file
+ * would not be seen here, which is why the order is part of the contract and
+ * is documented in README's "Releasing" section.
+ */
 function newestChangelogVersion(): string | undefined {
   const headings = [...changelog.matchAll(/^## \[(\d+\.\d+\.\d+)\]/gm)].map((m) => m[1]);
   return headings[0];

@@ -16,16 +16,25 @@ import type { AgencyAgentArtifact } from "../../schema/contract.ts";
  * than pinning a model — the baseline below reflects that release. This test
  * fails loudly if a later prompt edit accidentally drifts a model ref, tier,
  * persona, or any other frontmatter field.
+ *
+ * The baseline file is named for the release it freezes, so its path is built
+ * from `package.json` `version` rather than hard-coded — one version bump and
+ * one fixture rename move both together (see `release-version.test.ts`, which
+ * requires that fixture to exist under exactly this name).
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
 
+const pkg = JSON.parse(readFileSync(join(repoRoot, "package.json"), "utf8")) as {
+  version: string;
+};
+
 const baseline = JSON.parse(
-  readFileSync(join(here, "__fixtures__/v0.6.0-frontmatter-baseline.json"), "utf8"),
+  readFileSync(join(here, "__fixtures__", `v${pkg.version}-frontmatter-baseline.json`), "utf8"),
 ) as Record<string, Record<string, unknown>>;
 
-describe("frontmatter invariant: non-body fields frozen at v0.6.0", () => {
-  it("every agent's frontmatter (minus body + starters) is byte-identical to v0.6.0", () => {
+describe(`frontmatter invariant: non-body fields frozen at v${pkg.version}`, () => {
+  it(`every agent's frontmatter (minus body + starters) is byte-identical to v${pkg.version}`, () => {
     const { agents } = buildArtifacts(repoRoot);
     const strip = ({
       system_prompt: _system_prompt,
@@ -40,7 +49,7 @@ describe("frontmatter invariant: non-body fields frozen at v0.6.0", () => {
     }
   });
 
-  it("v0.6.0 invariant: no agent pins a model or maxTokens", () => {
+  it("v0.4.0 invariant: no agent pins a model or maxTokens", () => {
     const { agents } = buildArtifacts(repoRoot);
     for (const a of agents) {
       expect(a.model, `${a.id} still pins a model`).toBeUndefined();
@@ -48,7 +57,7 @@ describe("frontmatter invariant: non-body fields frozen at v0.6.0", () => {
     }
   });
 
-  it("v0.6.0 invariant: every non-internal agent binds at least one skill", () => {
+  it("v0.4.0 invariant: every non-internal agent binds at least one skill", () => {
     const { agents } = buildArtifacts(repoRoot);
     for (const a of agents.filter((x) => x.id !== "chat-llm")) {
       expect((a.skills ?? []).length, `${a.id} binds no skills`).toBeGreaterThan(0);

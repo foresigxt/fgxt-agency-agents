@@ -62,6 +62,7 @@ describe("parity: build output matches the Plan B fixture oracle", () => {
   );
 
   it("skills round-trip exactly (25 skills as of v0.6.0)", () => {
+    expect(built.skills).toHaveLength(25);
     expect(built.skills).toEqual(fixtureSkills);
   });
 });

@@ -192,7 +192,7 @@ git commit -m "feat(skills): agentic-operating core skill (FGXT-<n>)"
 **Files:**
 - Modify: `agents/foresigxt/sales/tender-bidding-manager.md`
 - Modify: `src/__tests__/tender-role.test.ts:68`
-- Modify: `src/__tests__/__fixtures__/agents.json`, `src/__tests__/__fixtures__/v0.6.0-frontmatter-baseline.json` (entry `tender-bidding-manager` only)
+- Modify: `src/__tests__/__fixtures__/agents.json`, `src/__tests__/__fixtures__/v0.4.0-frontmatter-baseline.json` (entry `tender-bidding-manager` only)
 - Test: `src/__tests__/framework-pilot.test.ts`
 
 **Interfaces:**
@@ -215,7 +215,7 @@ Changes:
 
 - [ ] **Step 5: Refresh agent fixture and baseline**
 
-Run: `pnpm build && cp dist/agents.json src/__tests__/__fixtures__/agents.json`. In `v0.6.0-frontmatter-baseline.json`, edit only the `tender-bidding-manager` entry: `persona_name` → `null`, `skills` → the list above.
+Run: `pnpm build && cp dist/agents.json src/__tests__/__fixtures__/agents.json`. In `v0.4.0-frontmatter-baseline.json`, edit only the `tender-bidding-manager` entry: `persona_name` → `null`, `skills` → the list above.
 Check: `git diff -- src/__tests__/__fixtures__/agents.json` touches only the `tender-bidding-manager` object.
 
 - [ ] **Step 6: Full suite** — `pnpm test && pnpm lint` → all pass.
@@ -287,7 +287,7 @@ git commit -m "feat(build): enforce the agent framework; shrink-only legacy list
 - Create: `skills/agent-architect/SKILL.md`
 - Modify: `agents/foresigxt/general/assistant.md` (frontmatter `skills` only)
 - Modify: `src/__tests__/framework-skills.test.ts`
-- Modify: `src/__tests__/__fixtures__/agents.json`, `skills.json`, `v0.6.0-frontmatter-baseline.json` (entry `assistant` only)
+- Modify: `src/__tests__/__fixtures__/agents.json`, `skills.json`, `v0.4.0-frontmatter-baseline.json` (entry `assistant` only)
 
 **Interfaces:**
 - Consumes: `checkRoleCard` (Task 1), `parseAgentFile` (`src/parse.ts`).
@@ -340,7 +340,7 @@ git commit -m "feat(skills): agent-architect builder skill, bound to assistant (
 - Modify: `catalog/framework-legacy.json` — shrinks to `chat-llm` alone
 - Modify: `src/__tests__/framework-legacy.test.ts` — `FROZEN_PENDING` becomes `[]`
 - Test: `src/__tests__/framework-migration.test.ts`
-- Modify: `src/__tests__/__fixtures__/agents.json`, `v0.6.0-frontmatter-baseline.json`
+- Modify: `src/__tests__/__fixtures__/agents.json`, `v0.4.0-frontmatter-baseline.json`
   (`persona_name` and `skills` for the 14 changed agents only)
 
 **Interfaces:** consumes `checkRoleCard` (Task 1). Produces the same published
@@ -370,7 +370,7 @@ contract with 14 migrated agents and no persona name anywhere.
 - [ ] **Step 4: Refresh the published artifacts** — `pnpm build`, copy
   `dist/agents.json` and `dist/skills.json` into the parity fixtures, and edit
   the `persona_name` and `skills` entries of the 14 changed agents in
-  `v0.6.0-frontmatter-baseline.json`. `dist/agents.json` must differ from
+  `v0.4.0-frontmatter-baseline.json`. `dist/agents.json` must differ from
   `main` in exactly those 14 agents, and `dist/skills.json` in exactly the two
   new skills.
 
