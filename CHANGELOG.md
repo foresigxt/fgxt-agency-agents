@@ -8,17 +8,17 @@ The release is the git tag — there is no npm publish step. Consumers install
 ## [0.7.0] - 2026-10-26
 
 > The `tender-bidding-manager` role is **ACTIVATED**. It shipped in 0.6.0 as an unactivated
-> pilot ✓ (absent from `catalog/activation.json` ✓), and 0.7.0 activates it ✓ — the release
-> FGXT-389 was waiting for ✓.
+> pilot (absent from `catalog/activation.json`), and 0.7.0 activates it — the release
+> FGXT-389 was waiting for.
 
-- **Activation** ✓: `tender-bidding-manager` joins `catalog/activation.json` ✓, so the role is
-  live from this release ✓ — it appears in the app-web gallery ✓ and is installable ✓.
-- The role is **tier `pro`** ✓ and its four tender skills (`tender-decomposition` ✓,
-  `bid-no-bid-assessment` ✓, `bid-strategy` ✓, `workflow-authoring` ✓) are tier `pro` ✓ ✓.
-- The role leaves `model` and `temperature` out ✓ ✓, so it is **pool-routed** ✓ ✓ (the same
-  convention as every other role in the catalog ✓).
-- No prompt, skill or persona content changed ✓ — this release is the activation ✓, so every
-  existing role is byte-identical to 0.6.0 ✓ ✓.
+- **Activation**: `tender-bidding-manager` joins `catalog/activation.json`, so the role is
+  live from this release — it appears in the app-web gallery and is installable.
+- The role is **tier `pro`** and its four tender skills (`tender-decomposition`,
+  `bid-no-bid-assessment`, `bid-strategy`, `workflow-authoring`) are tier `pro`.
+- The role leaves `model` and `temperature` out, so it is **pool-routed** (the same
+  convention as every other role in the catalog).
+- No prompt, skill or persona content changed — this release is the activation, so every
+  existing role is byte-identical to 0.6.0.
 
 ## [0.6.0] - 2026-10-24
 
