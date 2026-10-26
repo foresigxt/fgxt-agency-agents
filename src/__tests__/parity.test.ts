@@ -22,7 +22,13 @@ const fixtureAgents = JSON.parse(
   readFileSync(join(fixturesDir, "agents.json"), "utf8"),
 ) as AgencyAgentArtifact[];
 /** Authored but not yet in `catalog/activation.json` (FGXT-389 activates it). */
-const AWAITING_ACTIVATION = new Set(["tender-bidding-manager"]);
+/** Roles the agency has NOT activated yet.
+ *
+ * EMPTY as of 0.7.0 ✓: `tender-bidding-manager` was activated in 0.7.0 ✓ (it was
+ * the pilot ✓ — inactive through 0.6.0 ✓), so it left this set ✓. The mechanism
+ * stays ✓ because the next role will need it ✓.
+ */
+const AWAITING_ACTIVATION = new Set<string>([]);
 const fixtureSkills =JSON.parse(readFileSync(join(fixturesDir, "skills.json"), "utf8"));
 
 // Normalize through JSON so the comparison sees exactly the on-disk artifact

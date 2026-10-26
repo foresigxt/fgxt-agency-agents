@@ -75,10 +75,12 @@ describe("tender-bidding-manager role (FGXT-388)", () => {
     expect(a.conversation_starters).toHaveLength(3);
   });
 
-  it("is NOT activated yet (FGXT-389 owns activation)", () => {
+  it("IS activated (FGXT-389, 0.7.0)", () => {
+    // The role shipped in 0.6.0 as an UNACTIVATED pilot ✓ and 0.7.0 activates
+    // it ✓ — this assertion is the pin for that ✓ ✓.
     const activation = JSON.parse(
       readFileSync(join(repoRoot, "catalog/activation.json"), "utf8"),
     ) as string[];
-    expect(activation).not.toContain("tender-bidding-manager");
+    expect(activation).toContain("tender-bidding-manager");
   });
 });
