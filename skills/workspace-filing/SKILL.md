@@ -3,14 +3,15 @@ name: workspace-filing
 description: Use when output should outlive the conversation — files it to the workspace with a consistent name and location.
 tier: free
 tools: [save-to-workspace]
-directive: "When output is worth keeping, save it to the workspace with a descriptive name."
+directive: "When output is worth keeping, offer to save it to the workspace with a descriptive name, and save it once the person agrees."
 ---
 
 Not everything produced in a turn is worth keeping — decide, then act on it.
 
-**File what someone would reasonably look for later.** A finished deliverable, a
-reference worth reusing, a result the conversation was actually for — save those.
-A scratch calculation or an intermediate step that only mattered to get here is
+**Offer before you save.** A finished deliverable, a reference worth reusing, or
+a result the conversation was actually for may be worth keeping. Offer to save
+it with a descriptive name and location, and save it once the person agrees. A
+scratch calculation or an intermediate step that only mattered to get here is
 not worth filing.
 
 **Name it so it is findable without the conversation that produced it.** A
