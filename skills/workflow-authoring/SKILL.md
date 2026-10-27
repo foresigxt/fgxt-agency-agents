@@ -2,7 +2,7 @@
 name: workflow-authoring
 description: Use when someone wants a repeatable process set up — composes a workflow from a plain-language goal that the person can read and approve.
 tier: pro
-tools: []
+tools: [workflow-draft, workflow-update, workflow-validate, workflow-list, workflow-runs, workflow-run]
 directive: "When asked to set up a repeatable process, list its steps and side effects back to the person before composing anything."
 ---
 
@@ -34,6 +34,19 @@ workflow.** Number the steps, say what each one does in plain words, and mark
 every side effect and every approval gate. The workflow is not ready until the
 person has read that summary and agreed it does what they asked.
 
-**The workflow tools are not available yet.** Until they are, give the person
-the step summary as the deliverable, and say plainly that the workflow cannot
-be saved or run from this conversation.
+**Use the workflow tools when they are available.** Use `workflow-list` to check
+for an existing workflow before drafting a duplicate. Use `workflow-draft` for
+a new definition, `workflow-update` to revise one, and `workflow-validate` to
+check a draft before presenting it as ready. Use `workflow-run` to start a run
+and `workflow-runs` to inspect runs.
+
+**Running is a side effect.** Before running, show the step summary and get
+the person's yes first, unless the platform presents its own confirmation; when
+it does, do not also ask in prose. If `workflow-run` is refused as
+`upgrade_required`, say plainly that running needs a Pro or Bundle plan and
+that the saved workflow is still there.
+
+**Fall back when the tools are absent.** If the workflow tools are not in
+this conversation's toolset, give the person the step summary as the
+deliverable and say plainly that the workflow cannot be saved or run from this
+conversation.

@@ -13,12 +13,14 @@ import { skillFrontmatterSchema } from "../../schema/skill.frontmatter.ts";
  * `services/foresigxt/scripts/tool-id-gate.mjs`, run during the catalog
  * regeneration in FGXT-389. The "tool ids already used by shipped skills"
  * test below is the early, local proxy for it — deliberately not a copy of
- * app-web's id list, which would drift.
+ * app-web's id list, which would drift. Workflow-authoring is checked against
+ * the six app-web tool ids added by FGXT-441 instead of that older proxy.
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
 
-const NEW = ["tender-decomposition", "bid-no-bid-assessment", "bid-strategy", "workflow-authoring"];
+const NEW = ["tender-decomposition", "bid-no-bid-assessment", "bid-strategy"];
+const WORKFLOW_SKILL = "workflow-authoring";
 
 function parseSkill(name: string) {
   const rel = `skills/${name}/SKILL.md`;
@@ -27,7 +29,12 @@ function parseSkill(name: string) {
 
 function existingSkills() {
   return readdirSync(join(repoRoot, "skills"))
-    .filter((n) => !NEW.includes(n) && existsSync(join(repoRoot, "skills", n, "SKILL.md")))
+    .filter(
+      (n) =>
+        !NEW.includes(n) &&
+        n !== WORKFLOW_SKILL &&
+        existsSync(join(repoRoot, "skills", n, "SKILL.md")),
+    )
     .map(parseSkill);
 }
 
@@ -53,8 +60,42 @@ describe("tender skills (FGXT-388)", () => {
     }
   });
 
-  it("workflow-authoring declares no tools (workflow tools arrive in FGXT-368)", () => {
-    expect(parseSkill("workflow-authoring").frontmatter.tools).toEqual([]);
+  it("workflow-authoring declares the workflow tool ids in their documented order", () => {
+    expect(parseSkill(WORKFLOW_SKILL).frontmatter.tools).toEqual([
+      "workflow-draft",
+      "workflow-update",
+      "workflow-validate",
+      "workflow-list",
+      "workflow-runs",
+      "workflow-run",
+    ]);
+  });
+
+  it("workflow-authoring describes the available workflow lifecycle and fallbacks", () => {
+    const { instructions } = parseSkill(WORKFLOW_SKILL);
+    for (const tool of [
+      "workflow-list",
+      "workflow-draft",
+      "workflow-update",
+      "workflow-validate",
+      "workflow-runs",
+      "workflow-run",
+    ]) {
+      expect(instructions, `missing workflow tool: ${tool}`).toContain(`\`${tool}\``);
+    }
+    expect(instructions).toContain("upgrade_required");
+    expect(instructions).toContain("Pro or Bundle");
+    expect(instructions).toContain("conversation's toolset");
+    expect(instructions).toContain("cannot be saved or run from this");
+    expect(instructions).toContain("conversation");
+  });
+
+  it("workflow-authoring gates a run without duplicating a platform confirmation", () => {
+    const { instructions } = parseSkill(WORKFLOW_SKILL);
+    expect(instructions).toContain("show the step summary and get");
+    expect(instructions).toContain("the person's yes first");
+    expect(instructions).toContain("unless the platform presents its own confirmation");
+    expect(instructions).toContain("do not also ask in prose");
   });
 });
 
