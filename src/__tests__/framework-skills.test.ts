@@ -29,15 +29,14 @@ const OPERATING_SECTIONS = [
 const OPERATING_RESPONSIBILITIES = [
   ["`ask-user`", /`ask-user`/],
   ["`web-search`", /`web-search`/],
-  ["`table`", /`table`/],
-  ["`compare`", /`compare`/],
-  ["`draft`", /`draft`/],
+  ["table or compare skill", /table or compare skill/],
+  ["draft skill", /draft skill/],
   ["`save-to-workspace`", /`save-to-workspace`/],
   ["Notebook", /Notebook/],
   ["connector", /connector/],
   ["`request-connector`", /request-connector/],
   ["fallback", /fallback/],
-  ["`skill` and `skill_read`", /`skill`.*`skill_read`/s],
+  ["skill_search, skill and skill_read", /skill_search, skill and skill_read/],
   ["skill proposal", /propose a skill/i],
   ["evidence-linked claims", /tie every claim to its evidence/i],
 ] as const;
