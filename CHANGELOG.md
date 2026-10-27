@@ -5,6 +5,15 @@ All notable changes to `@foresigxt/agency-agents`.
 The release is the git tag — there is no npm publish step. Consumers install
 `github:foresigxt/fgxt-agency-agents#v<version>` and get the committed `dist/` verbatim.
 
+## [0.8.0] - 2026-10-27
+
+- The `workflow-authoring` skill now exposes the six workflow tools and explains their lifecycle:
+  list existing workflows before drafting, draft and update definitions, validate before presenting
+  a workflow as ready, and start or inspect runs. Running remains an approved side effect, and
+  the skill falls back to a readable step summary when the workflow tools are unavailable.
+- `workflow-run` is available on Agent Pro and Bundle plans. An `upgrade_required` refusal leaves
+  the saved workflow intact.
+
 ## [0.7.0] - 2026-10-26
 
 > The `tender-bidding-manager` role is **ACTIVATED**. It shipped in 0.6.0 as an unactivated
