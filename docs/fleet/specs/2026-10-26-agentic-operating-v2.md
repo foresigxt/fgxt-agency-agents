@@ -74,7 +74,7 @@ When supervisor sub-agents are available, independent parallel work and broad se
 
 ### Capability boundary
 
-The manual uses only capabilities available to Foresigxt agents. It may name `ask-user`, the table, draft, and compare tools, web search, workspace saving, Notebooks, connectors, connector requests, skill loading and reading, and supervisor sub-agents when the relevant capability is available. It does not imply browser, desktop, shell, purchase, payment, or CAPTCHA capabilities. This is a constraint on the body, not a body section.
+The manual uses only capabilities available to Foresigxt agents. It may name `ask-user`, the table, draft, and compare skills, web search, workspace saving, Notebooks, connectors, connector requests, skill loading and reading, and supervisor sub-agents when the relevant capability is available. It does not imply browser, desktop, shell, purchase, payment, or CAPTCHA capabilities. This is a constraint on the body, not a body section.
 
 ### Definition of done
 
@@ -90,7 +90,7 @@ The core operating directive changes to this exact owner-approved one-sentence d
 
 ### Release shape
 
-The change adds an `## [Unreleased]` changelog entry above the newest numbered release but does not choose a release version. The package version and the named frontmatter baseline stay unchanged. The authored skill bodies and their directives are the only source behaviour that changes. The existing parsed-skill contract test changes with the new directive and content contract. The generated skill artifact and the committed skill parity fixture change with those bodies; no agent artifact, agent fixture, role card, or frontmatter baseline entry changes. The operating-body word count means the parsed instructions body, excluding frontmatter, split on whitespace.
+The owner approved release 0.9.0 on 2026-10-27. The change adds a `## [0.9.0] - 2026-10-27` changelog entry above the newest numbered release, sets the package version to 0.9.0, and renames the frontmatter baseline fixture to `v0.9.0-frontmatter-baseline.json` without changing its contents. The authored skill bodies and their directives are the only source behaviour that changes. The existing parsed-skill contract test changes with the new directive and content contract. The generated skill artifact and the committed skill parity fixture change with those bodies; no agent artifact, agent fixture, role card, or frontmatter baseline entry changes. The operating-body word count means the parsed instructions body, excluding frontmatter, split on whitespace.
 
 ## Acceptance criteria
 
@@ -114,8 +114,8 @@ The change adds an `## [Unreleased]` changelog entry above the newest numbered r
 - The shared operating skill names the seven agent-facing sections in order: ask or proceed, plan detail, approval, unattended runs, errors and uncertain outcomes, delegation, and definition of done.
 - The workspace-filing directive offers a descriptive workspace save and conditions the save on the person's agreement.
 - The workspace-filing body conditions its save on the person's agreement and retains its guidance on what to file, naming, location, and confirming the result.
-- The Unreleased changelog entry describes the shared operating and workspace-filing changes without choosing a release version.
-- The package version, frontmatter baseline name and contents, role cards, and agent artifact fixtures remain unchanged.
+- The 0.9.0 changelog entry describes the shared operating and workspace-filing changes.
+- The package version is 0.9.0, the frontmatter baseline is named for v0.9.0 with unchanged contents, and role cards and agent artifact fixtures remain unchanged.
 - The published skill artifact and committed skill parity fixture reproduce the changed authored skills; a fresh build is reproducible.
 - Each new or changed content-contract test is mutation-proven: weakening the authored contract makes its test fail, and the authored file is restored byte-identically.
 - The package tests, lint, and the full fleet gate pass, and the ready report includes the SHA, operating-body word count, and this spec location.
@@ -129,7 +129,7 @@ The change adds an `## [Unreleased]` changelog entry above the newest numbered r
 
 ## Out of scope
 
-App-web's core prompt and always-on operating instructions; role-card changes; tool or connector implementation; the separate workflow-authoring skill, whose v0.8.0 guidance governs authoring and manual runs rather than the platform's runtime-only approved-workflow execution; a model-runner or behavioural evaluation suite; choosing the next release version; renaming or editing the frontmatter baseline; and any generated agent artifact change.
+App-web's core prompt and always-on operating instructions; role-card changes; tool or connector implementation; the separate workflow-authoring skill, whose v0.8.0 guidance governs authoring and manual runs rather than the platform's runtime-only approved-workflow execution; a model-runner or behavioural evaluation suite; any release version other than the owner-approved 0.9.0; editing the frontmatter baseline contents; and any generated agent artifact change.
 
 ## Task graph
 
@@ -148,7 +148,7 @@ Strengthen the shared operating skill and align workspace filing with the shared
 
 **Test seams:** parsed skill artifacts, build-and-parity artifacts, release guard, and role-binding inventory.
 
-**Out of scope:** app-web core prompt, role cards, tool implementations, release version selection, and agent artifact changes.
+**Out of scope:** app-web core prompt, role cards, tool implementations, any release version other than the owner-approved 0.9.0, baseline-content edits, and agent artifact changes.
 
 **Acceptance criteria**
 
