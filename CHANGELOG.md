@@ -5,7 +5,7 @@ All notable changes to `@foresigxt/agency-agents`.
 The release is the git tag — there is no npm publish step. Consumers install
 `github:foresigxt/fgxt-agency-agents#v<version>` and get the committed `dist/` verbatim.
 
-## [Unreleased]
+## [0.9.0] - 2026-10-27
 
 - Strengthened the shared `agentic-operating` skill for long, multi-step, and unattended work. It now covers when to ask or proceed, outcome-based plans and replanning, action-specific approvals, platform confirmations and approved workflows, uncertain outcomes, delegation, and a definition of done.
 - Changed `workspace-filing` to offer a descriptive workspace save and save it only after the person agrees.
