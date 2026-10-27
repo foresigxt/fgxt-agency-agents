@@ -6,9 +6,8 @@ import { parseAgentFile, parseSkillFile } from "../parse.ts";
 import { checkRoleCard, formatViolations, FRAMEWORK_CORE_SKILL, ROLE_CARD_SECTIONS } from "../framework.ts";
 
 /**
- * FGXT-405 — the two skills the Agent Framework adds: the shared operating
- * core every conformant role binds, and the role-drafting skill bound to the
- * assistant.
+ * Skill contract tests for the shared operating core, workspace filing, and the
+ * role-drafting skill bound to the assistant.
  */
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -55,7 +54,7 @@ function parseSkill(name: string) {
   return parseSkillFile(skillPath(name), skillSource(name));
 }
 
-describe("agentic-operating (FGXT-405)", () => {
+describe("agentic-operating (FGXT-431)", () => {
   it("parses, tier free, no tools", () => {
     const { frontmatter } = parseSkill(FRAMEWORK_CORE_SKILL);
     expect(frontmatter.name).toBe(FRAMEWORK_CORE_SKILL);
@@ -115,7 +114,9 @@ describe("agentic-operating (FGXT-405)", () => {
     }
     expect(instructions.split(/\s+/).filter(Boolean).length).toBeLessThanOrEqual(900);
     expect(instructions).not.toMatch(/\b(browser|desktop|shell|purchase|CAPTCHA)\b/i);
-    expect(instructions).not.toMatch(/\b\d+(?:\.\d+)?\s*%\s*(?:confidence|certain)/i);
+    expect(instructions).not.toMatch(
+      /\b\d+(?:\.\d+)?\s*%\s*(?:confiden\w*|cert\w*|sure\b)|\b(?:confiden\w*|cert\w*|sure\b)[^\n]{0,20}\b\d+(?:\.\d+)?\s*%/i,
+    );
   });
 
   it("has no shouty emphasis", () => {

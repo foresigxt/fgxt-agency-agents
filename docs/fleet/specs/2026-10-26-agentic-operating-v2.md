@@ -144,6 +144,8 @@ Strengthen the shared operating skill and align workspace filing with the shared
 
 **Desired behaviour:** one concise on-demand operating contract gives roles consistent decisions for the work they can actually perform, and every workspace save is offered before it happens.
 
+**Key interfaces:** the parsed skill artifact (`name`, `tier`, `tools`, `directive`, `instructions`) and the committed skill artifact/parity fixture produced by the existing build.
+
 **Test seams:** parsed skill artifacts, build-and-parity artifacts, release guard, and role-binding inventory.
 
 **Out of scope:** app-web core prompt, role cards, tool implementations, release version selection, and agent artifact changes.
