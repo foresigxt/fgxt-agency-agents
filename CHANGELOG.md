@@ -11,8 +11,8 @@ The release is the git tag — there is no npm publish step. Consumers install
   list existing workflows before drafting, draft and update definitions, validate before presenting
   a workflow as ready, and start or inspect runs. Running remains an approved side effect, and
   the skill falls back to a readable step summary when the workflow tools are unavailable.
-- `workflow-run` is available on Pro and Bundle plans. An `upgrade_required` refusal leaves the
-  saved workflow intact.
+- `workflow-run` is available on Agent Pro and Bundle plans. An `upgrade_required` refusal leaves
+  the saved workflow intact.
 
 ## [0.7.0] - 2026-10-26
 

@@ -43,7 +43,7 @@ and `workflow-runs` to inspect runs.
 **Running is a side effect.** Before running, show the step summary and get
 the person's yes first, unless the platform presents its own confirmation; when
 it does, do not also ask in prose. If `workflow-run` is refused as
-`upgrade_required`, say plainly that running needs a Pro or Bundle plan and
+`upgrade_required`, say plainly that running needs Agent Pro or Bundle and
 that the saved workflow is still there.
 
 **Fall back when the tools are absent.** If the workflow tools are not in

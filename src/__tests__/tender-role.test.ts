@@ -13,14 +13,16 @@ import { skillFrontmatterSchema } from "../../schema/skill.frontmatter.ts";
  * `services/foresigxt/scripts/tool-id-gate.mjs`, run during the catalog
  * regeneration in FGXT-389. The "tool ids already used by shipped skills"
  * test below is the early, local proxy for it — deliberately not a copy of
- * app-web's id list, which would drift. Workflow-authoring is checked against
- * the six app-web tool ids added by FGXT-441 instead of that older proxy.
+ * app-web's id list, which would drift. Workflow-authoring now ships the six
+ * app-web workflow tool ids, so it contributes them to the shipped pool; its
+ * exact list is asserted separately.
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..");
 
-const NEW = ["tender-decomposition", "bid-no-bid-assessment", "bid-strategy"];
+const NEW = ["tender-decomposition", "bid-no-bid-assessment", "bid-strategy", "workflow-authoring"];
 const WORKFLOW_SKILL = "workflow-authoring";
+const LEGACY_TOOL_ID_SKILLS = ["tender-decomposition", "bid-no-bid-assessment", "bid-strategy"];
 
 function parseSkill(name: string) {
   const rel = `skills/${name}/SKILL.md`;
@@ -31,8 +33,7 @@ function existingSkills() {
   return readdirSync(join(repoRoot, "skills"))
     .filter(
       (n) =>
-        !NEW.includes(n) &&
-        n !== WORKFLOW_SKILL &&
+        !LEGACY_TOOL_ID_SKILLS.includes(n) &&
         existsSync(join(repoRoot, "skills", n, "SKILL.md")),
     )
     .map(parseSkill);
@@ -84,16 +85,14 @@ describe("tender skills (FGXT-388)", () => {
       expect(instructions, `missing workflow tool: ${tool}`).toContain(`\`${tool}\``);
     }
     expect(instructions).toContain("upgrade_required");
-    expect(instructions).toContain("Pro or Bundle");
-    expect(instructions).toContain("conversation's toolset");
-    expect(instructions).toContain("cannot be saved or run from this");
-    expect(instructions).toContain("conversation");
+    expect(instructions).toContain("Agent Pro or Bundle");
+    expect(instructions).toMatch(/not in\s+this conversation's toolset/);
+    expect(instructions).toMatch(/cannot be saved or run from this\s+conversation/);
   });
 
   it("workflow-authoring gates a run without duplicating a platform confirmation", () => {
     const { instructions } = parseSkill(WORKFLOW_SKILL);
-    expect(instructions).toContain("show the step summary and get");
-    expect(instructions).toContain("the person's yes first");
+    expect(instructions).toMatch(/show the step summary and get\s+the person's yes first/);
     expect(instructions).toContain("unless the platform presents its own confirmation");
     expect(instructions).toContain("do not also ask in prose");
   });
